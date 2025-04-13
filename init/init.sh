@@ -2,10 +2,11 @@
 set -euo pipefail
 
 init_config_paths="
-gateway-crds/
-aws-loadbalancer-controller/
-gateway-controller/
-gateway/
+gateway/gateway-crds/
+gateway/aws-loadbalancer-controller/
+gateway/gateway-controller/
+gateway/gateway/
+argocd/
 "
 
 for path in $init_config_paths; do
