@@ -1,7 +1,0 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: nginx-gateway
-  namespace: nginx-gateway
-spec:
-  replicas: 2

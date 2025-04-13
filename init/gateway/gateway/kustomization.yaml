@@ -5,5 +5,4 @@ namespace: nginx-gateway
 resources:
   - gateway.yaml
   - healthcheck.yaml
-  - httproute.yaml
   - targetgroupbinding.yaml

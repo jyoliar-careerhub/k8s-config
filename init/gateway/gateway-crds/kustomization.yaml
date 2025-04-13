@@ -3,3 +3,4 @@ kind: Kustomization
 
 resources:
   - https://github.com/kubernetes-sigs/gateway-api/config/crd?timeout=120&ref=v1.2.1
+  - https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1.6.2/deploy/crds.yaml
