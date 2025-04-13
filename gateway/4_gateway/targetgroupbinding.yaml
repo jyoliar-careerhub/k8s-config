@@ -1,0 +1,10 @@
+apiVersion: elbv2.k8s.aws/v1beta1
+kind: TargetGroupBinding
+metadata:
+  name: nginx-gateway
+  namespace: nginx-gateway
+spec:
+  serviceRef:
+    name: nginx-gateway # route traffic to the awesome-service
+    port: 80
+  targetGroupARN: "arn:aws:elasticloadbalancing:ap-south-1:986069063944:targetgroup/prod-eks-alb-tg/2218c8fd1682acaa"
