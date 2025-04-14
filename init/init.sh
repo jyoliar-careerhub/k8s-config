@@ -3,6 +3,7 @@ set -euo pipefail
 
 init_config_paths="
 gateway/gateway-crds/
+gateway/cert-manager/
 gateway/aws-loadbalancer-controller/
 gateway/gateway-controller/
 gateway/gateway/
