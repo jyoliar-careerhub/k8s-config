@@ -7,4 +7,4 @@ spec:
   serviceRef:
     name: nginx-gateway # route traffic to the awesome-service
     port: 80
-  targetGroupARN: "arn:aws:elasticloadbalancing:ap-south-1:986069063944:targetgroup/prod-eks-alb-tg/7a156fd5e1e0cd6e"
+  targetGroupARN: "arn:aws:elasticloadbalancing:ap-south-1:986069063944:targetgroup/prod-eks-alb-tg/a14aa4568e4b8ef2"

@@ -18,7 +18,7 @@ for path in $init_config_paths; do
         echo "Changes detected in $path. Applying changes..."
         kubectl apply -k "$path" | grep -v "unchanged"
         echo "Successfully applied changes in $path."
-        sleep 3
+        sleep 5
     else
         echo "No changes detected in $path."
     fi
