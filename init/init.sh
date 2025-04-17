@@ -8,6 +8,7 @@ gateway/aws-loadbalancer-controller/
 gateway/gateway-controller/
 gateway/gateway/
 argocd/
+post-init/
 "
 
 for path in $init_config_paths; do

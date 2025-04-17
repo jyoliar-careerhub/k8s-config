@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - metrics-server.yaml
   - external-secrets.yaml
+  - secret-store.yaml
