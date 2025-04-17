@@ -1,4 +1,22 @@
 apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: bootstrap-system
+spec:
+  sourceRepos:
+    - "jyoliar-careerhub/k8s-config"
+  destinations:
+    - namespace: "argocd"
+      server: "https://kubernetes.default.svc"
+    - namespace: "kube-system"
+      server: "https://kubernetes.default.svc"
+    - namespace: "nginx-gateway"
+      server: "https://kubernetes.default.svc"
+  clusterResourceWhitelist:
+    - group: "*"
+      kind: "*"
+---
+apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: system
@@ -43,7 +61,6 @@ spec:
       labels:
         bootstrap-system: "{{.name}}"
     spec:
-      project: default
       source:
         repoURL: git@github.com:jyoliar-careerhub/k8s-config.git
         targetRevision: feature/init-config

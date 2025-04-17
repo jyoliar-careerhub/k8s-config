@@ -9,7 +9,7 @@ spec:
   destination:
     namespace: kube-system
     server: https://kubernetes.default.svc
-  project: default
+  project: bootstrap-system
   source:
     chart: external-secrets
     repoURL: https://charts.external-secrets.io

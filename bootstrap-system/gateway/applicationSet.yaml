@@ -45,7 +45,7 @@ spec:
       labels:
         bootstrap-system/gateway: "{{.name}}"
     spec:
-      project: default
+      project: bootstrap-system
       source:
         repoURL: git@github.com:jyoliar-careerhub/k8s-config.git
         targetRevision: feature/init-config
