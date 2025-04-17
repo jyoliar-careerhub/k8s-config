@@ -13,7 +13,7 @@ spec:
             path: bootstrap-system/argocd
           - name: external-secrets
             path: bootstrap-system/external-secrets
-          - name: gateway
+          - name: gateway-appset
             path: bootstrap-system/gateway
           - name: argocd-httproute
             path: bootstrap-system/argocd-httproute
@@ -32,7 +32,7 @@ spec:
         - matchExpressions:
             - key: bootstrap-system
               operator: In
-              values: ["gateway"]
+              values: ["gateway-appset"]
         - matchExpressions:
             - key: bootstrap-system
               operator: In
