@@ -4,7 +4,7 @@ metadata:
   name: external-secrets-helm
   namespace: argocd
   labels:
-    system/external-secrets: ""
+    bootstrap-system/external-secrets: external-secrets-helm
 spec:
   destination:
     namespace: kube-system

@@ -5,13 +5,9 @@ metadata:
   namespace: argocd
 spec:
   sourceRepos:
-    - "jyoliar-careerhub/k8s-config"
+    - "*"
   destinations:
-    - namespace: "argocd"
-      server: "https://kubernetes.default.svc"
-    - namespace: "kube-system"
-      server: "https://kubernetes.default.svc"
-    - namespace: "nginx-gateway"
+    - namespace: "*"
       server: "https://kubernetes.default.svc"
   clusterResourceWhitelist:
     - group: "*"
