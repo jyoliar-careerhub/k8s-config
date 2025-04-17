@@ -2,6 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
   name: bootstrap-system
+  namespace: argocd
 spec:
   sourceRepos:
     - "jyoliar-careerhub/k8s-config"
@@ -22,6 +23,8 @@ metadata:
   name: system
   namespace: argocd
 spec:
+  syncPolicy:
+    applicationsSync: create-update
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
   generators:
@@ -61,6 +64,7 @@ spec:
       labels:
         bootstrap-system: "{{.name}}"
     spec:
+      project: bootstrap-system
       source:
         repoURL: git@github.com:jyoliar-careerhub/k8s-config.git
         targetRevision: feature/init-config
