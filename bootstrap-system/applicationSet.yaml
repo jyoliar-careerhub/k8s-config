@@ -22,26 +22,26 @@ spec:
     rollingSync:
       steps:
         - matchExpressions:
-            - key: system
+            - key: bootstrap-system
               operator: In
               values: ["argocd"]
         - matchExpressions:
-            - key: system
+            - key: bootstrap-system
               operator: In
               values: ["external-secrets"]
         - matchExpressions:
-            - key: system
+            - key: bootstrap-system
               operator: In
               values: ["gateway"]
         - matchExpressions:
-            - key: system
+            - key: bootstrap-system
               operator: In
               values: ["argocd-httproute"]
   template:
     metadata:
       name: "{{.name}}"
       labels:
-        system/gateway: "{{.name}}"
+        bootstrap-system: "{{.name}}"
     spec:
       project: default
       source:
