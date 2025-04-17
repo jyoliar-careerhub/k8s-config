@@ -1,0 +1,52 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: gateway
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+    - list:
+        elements:
+          - name: gateway-crds
+            path: gateway/gateaway-crds
+          - name: cert-manager
+            path: gateway/cert-manager
+          - name: aws-loadbalancer-controller
+            path: gateway/aws-loadbalancer-controller
+          - name: gateway-controller
+            path: gateway/gateway-controller
+          - name: gateway
+            path: gateway/gateway
+  strategy:
+    type: RollingSync
+    rollingSync:
+      steps:
+        - matchExpression:
+            - key: app.kubernetes.io/part-of
+              operator: In
+              values: ["gateway-crds", "cert-manager"]
+            - key: app.kubernetes.io/part-of
+              operator: In
+              values: ["aws-loadbalancer-controller"]
+            - key: app.kubernetes.io/part-of
+              operator: In
+              values: ["gateway-controller"]
+            - key: app.kubernetes.io/part-of
+              operator: In
+              values: ["gateway"]
+
+  template:
+    metadata:
+      name: "{{.name}}"
+      labels:
+        app.kubernetes.io/part-of: "{{.name}}"
+    spec:
+      project: default
+      source:
+        repoURL: git@github.com:jyoliar-careerhub/k8s-config.git
+        targetRevision: feature/init-config
+        path: "{{.path}}"
+      destination:
+        server: https://kubernetes.default.svc
