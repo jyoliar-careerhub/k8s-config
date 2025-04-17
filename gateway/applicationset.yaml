@@ -23,7 +23,7 @@ spec:
     type: RollingSync
     rollingSync:
       steps:
-        - matchExpression:
+        - matchExpressions:
             - key: app.kubernetes.io/part-of
               operator: In
               values: ["gateway-crds", "cert-manager"]
@@ -50,3 +50,7 @@ spec:
         path: "{{.path}}"
       destination:
         server: https://kubernetes.default.svc
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
