@@ -2,13 +2,8 @@
 set -euo pipefail
 
 init_config_paths="
-gateway/gateway-crds/
-gateway/cert-manager/
-gateway/aws-loadbalancer-controller/
-gateway/gateway-controller/
-gateway/gateway/
 argocd/
-post-init/
+external-secrets/
 "
 
 for path in $init_config_paths; do
@@ -24,3 +19,5 @@ for path in $init_config_paths; do
         echo "No changes detected in $path."
     fi
 done
+
+kubectl apply -f applicationSet.yaml

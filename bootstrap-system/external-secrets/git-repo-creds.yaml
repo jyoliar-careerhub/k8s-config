@@ -3,7 +3,6 @@ kind: ServiceAccount
 metadata:
   annotations:
     eks.amazonaws.com/role-arn: "arn:aws:iam::986069063944:role/prod-argocd-repo-reader"
-  creationTimestamp: null
   name: argocd-repo-reader
   namespace: argocd
 ---

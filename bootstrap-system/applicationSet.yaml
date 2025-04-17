@@ -1,0 +1,64 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: system
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+    - list:
+        elements:
+          - name: argocd
+            path: bootstrap-system/argocd
+          - name: external-secrets
+            path: bootstrap-system/external-secrets
+          - name: gateway
+            path: bootstrap-system/gateway
+          - name: argocd-httproute
+            path: bootstrap-system/argocd-httproute
+  strategy:
+    type: RollingSync
+    rollingSync:
+      steps:
+        - matchExpressions:
+            - key: system
+              operator: In
+              values: ["argocd"]
+        - matchExpressions:
+            - key: system
+              operator: In
+              values: ["external-secrets"]
+        - matchExpressions:
+            - key: system
+              operator: In
+              values: ["gateway"]
+        - matchExpressions:
+            - key: system
+              operator: In
+              values: ["argocd-httproute"]
+  template:
+    metadata:
+      name: "{{.name}}"
+      labels:
+        system/gateway: "{{.name}}"
+    spec:
+      project: default
+      source:
+        repoURL: git@github.com:jyoliar-careerhub/k8s-config.git
+        targetRevision: feature/init-config
+        path: "{{.path}}"
+      destination:
+        server: https://kubernetes.default.svc
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        retry:
+          limit: 0 # ← 0이면 무제한 재시도
+          backoff:
+            duration: 5s
+            maxDuration: 3m
+            factor: 2
+        syncOptions:
+          - CreateNamespace=true

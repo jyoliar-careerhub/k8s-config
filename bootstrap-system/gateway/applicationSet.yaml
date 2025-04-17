@@ -10,38 +10,40 @@ spec:
     - list:
         elements:
           - name: gateway-crds
-            path: gateway/gateaway-crds
+            path: bootstrap-system/gateway/gateway-crds
           - name: cert-manager
-            path: gateway/cert-manager
+            path: bootstrap-system/gateway/cert-manager
           - name: aws-loadbalancer-controller
-            path: gateway/aws-loadbalancer-controller
+            path: bootstrap-system/gateway/aws-loadbalancer-controller
           - name: gateway-controller
-            path: gateway/gateway-controller
+            path: bootstrap-system/gateway/gateway-controller
           - name: gateway
-            path: gateway/gateway
+            path: bootstrap-system/gateway/gateway
   strategy:
     type: RollingSync
     rollingSync:
       steps:
         - matchExpressions:
-            - key: app.kubernetes.io/part-of
+            - key: system/gateway
               operator: In
               values: ["gateway-crds", "cert-manager"]
-            - key: app.kubernetes.io/part-of
+        - matchExpressions:
+            - key: system/gateway
               operator: In
               values: ["aws-loadbalancer-controller"]
-            - key: app.kubernetes.io/part-of
+        - matchExpressions:
+            - key: system/gateway
               operator: In
               values: ["gateway-controller"]
-            - key: app.kubernetes.io/part-of
+        - matchExpressions:
+            - key: system/gateway
               operator: In
               values: ["gateway"]
-
   template:
     metadata:
       name: "{{.name}}"
       labels:
-        app.kubernetes.io/part-of: "{{.name}}"
+        system/gateway: "{{.name}}"
     spec:
       project: default
       source:
@@ -54,5 +56,11 @@ spec:
         automated:
           prune: true
           selfHeal: true
+        retry:
+          limit: 0 # ← 0이면 무제한 재시도
+          backoff:
+            duration: 5s
+            maxDuration: 3m
+            factor: 2
         syncOptions:
           - CreateNamespace=true
