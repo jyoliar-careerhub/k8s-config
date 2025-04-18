@@ -18,7 +18,7 @@ for path in $init_config_paths; do
         kubectl wait --for=condition=available --timeout=60s --all deployments -A > /dev/null
         echo "Successfully applied changes in $path."
 
-        sleep 2
+        sleep 5
     else
         echo "No changes detected in $path."
     fi

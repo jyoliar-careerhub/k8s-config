@@ -6,7 +6,7 @@ data:
   resource.customizations: |
     argoproj.io/ApplicationSet:
       health.lua: |
-        resource.customizations.health.argoproj.io_ApplicationSet=hs = {}
+        hs = {}
         hs.status = "Progressing"
         hs.message = ""
         if obj.status ~= nil then
