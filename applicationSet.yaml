@@ -1,19 +1,4 @@
 apiVersion: argoproj.io/v1alpha1
-kind: AppProject
-metadata:
-  name: root
-  namespace: argocd
-spec:
-  sourceRepos:
-    - "*"
-  destinations:
-    - namespace: "*"
-      server: "https://kubernetes.default.svc"
-  clusterResourceWhitelist:
-    - group: "*"
-      kind: "*"
----
-apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: root
