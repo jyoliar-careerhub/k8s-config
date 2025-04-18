@@ -28,27 +28,27 @@ spec:
     rollingSync:
       steps:
         - matchExpressions:
-            - key: /bootstrap-system
+            - key: bootstrap-system
               operator: In
               values: ["argocd"]
         - matchExpressions:
-            - key: /bootstrap-system
+            - key: bootstrap-system
               operator: In
               values: ["argocd-appproj"]
         - matchExpressions:
-            - key: /bootstrap-system
+            - key: bootstrap-system
               operator: In
               values: ["external-secrets-operator"]
         - matchExpressions:
-            - key: /bootstrap-system
+            - key: bootstrap-system
               operator: In
               values: ["external-secrets"]
         - matchExpressions:
-            - key: /bootstrap-system
+            - key: bootstrap-system
               operator: In
               values: ["gateway-appset"]
         - matchExpressions:
-            - key: /bootstrap-system
+            - key: bootstrap-system
               operator: In
               values: ["gateway-httproute"]
   template:

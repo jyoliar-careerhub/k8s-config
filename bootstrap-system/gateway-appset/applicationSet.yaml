@@ -26,19 +26,19 @@ spec:
     rollingSync:
       steps:
         - matchExpressions:
-            - key: /bootstrap-system/gateway-appset
+            - key: bootstrap-system/gateway-appset
               operator: In
               values: ["gateway-crds", "cert-manager"]
         - matchExpressions:
-            - key: /bootstrap-system/gateway-appset
+            - key: bootstrap-system/gateway-appset
               operator: In
               values: ["aws-loadbalancer-controller"]
         - matchExpressions:
-            - key: /bootstrap-system/gateway-appset
+            - key: bootstrap-system/gateway-appset
               operator: In
               values: ["gateway-controller"]
         - matchExpressions:
-            - key: /bootstrap-system/gateway-appset
+            - key: bootstrap-system/gateway-appset
               operator: In
               values: ["gateway"]
   template:

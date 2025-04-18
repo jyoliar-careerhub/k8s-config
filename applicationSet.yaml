@@ -16,7 +16,7 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: system
+  name: root
   namespace: argocd
 spec:
   syncPolicy:
@@ -33,14 +33,14 @@ spec:
     rollingSync:
       steps:
         - matchExpressions:
-            - key: /
+            - key: root
               operator: In
               values: ["bootstrap-system"]
   template:
     metadata:
       name: "{{.name}}"
       labels:
-        bootstrap-system: "{{.name}}"
+        root: "{{.name}}"
     spec:
       project: root
       source:
