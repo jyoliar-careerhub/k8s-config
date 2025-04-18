@@ -45,7 +45,7 @@ spec:
     metadata:
       name: "{{.name}}"
       labels:
-        bootstrap-system/gateway: "{{.name}}"
+        bootstrap-system/gateway-appset: "{{.name}}"
     spec:
       project: bootstrap-system
       source:
