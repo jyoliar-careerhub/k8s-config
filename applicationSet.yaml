@@ -19,8 +19,6 @@ metadata:
   name: root
   namespace: argocd
 spec:
-  syncPolicy:
-    applicationsSync: create-update
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
   generators:
