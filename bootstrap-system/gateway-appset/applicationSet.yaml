@@ -12,33 +12,33 @@ spec:
     - list:
         elements:
           - name: gateway-crds
-            path: bootstrap-system/gateway/gateway-crds
+            path: bootstrap-system/gateway-appset/gateway-crds
           - name: cert-manager
-            path: bootstrap-system/gateway/cert-manager
+            path: bootstrap-system/gateway-appset/cert-manager
           - name: aws-loadbalancer-controller
-            path: bootstrap-system/gateway/aws-loadbalancer-controller
+            path: bootstrap-system/gateway-appset/aws-loadbalancer-controller
           - name: gateway-controller
-            path: bootstrap-system/gateway/gateway-controller
+            path: bootstrap-system/gateway-appset/gateway-controller
           - name: gateway
-            path: bootstrap-system/gateway/gateway
+            path: bootstrap-system/gateway-appset/gateway
   strategy:
     type: RollingSync
     rollingSync:
       steps:
         - matchExpressions:
-            - key: /bootstrap-system/gateway
+            - key: /bootstrap-system/gateway-appset
               operator: In
               values: ["gateway-crds", "cert-manager"]
         - matchExpressions:
-            - key: /bootstrap-system/gateway
+            - key: /bootstrap-system/gateway-appset
               operator: In
               values: ["aws-loadbalancer-controller"]
         - matchExpressions:
-            - key: /bootstrap-system/gateway
+            - key: /bootstrap-system/gateway-appset
               operator: In
               values: ["gateway-controller"]
         - matchExpressions:
-            - key: /bootstrap-system/gateway
+            - key: /bootstrap-system/gateway-appset
               operator: In
               values: ["gateway"]
   template:

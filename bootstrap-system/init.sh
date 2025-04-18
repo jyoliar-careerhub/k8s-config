@@ -3,6 +3,8 @@ set -euo pipefail
 
 init_config_paths="
 argocd/
+argocd-appproj/
+external-secrets-operator/
 external-secrets/
 "
 
@@ -13,8 +15,8 @@ for path in $init_config_paths; do
     if [ -n "$IS_DIFF" ]; then
         echo "Changes detected in $path. Applying changes..."
         kubectl apply -k "$path" | grep -v "unchanged"
+        kubectl wait --for=condition=available --timeout=60s --all deployments -A > /dev/null
         echo "Successfully applied changes in $path."
-        sleep 5
     else
         echo "No changes detected in $path."
     fi

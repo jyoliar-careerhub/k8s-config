@@ -1,19 +1,4 @@
 apiVersion: argoproj.io/v1alpha1
-kind: AppProject
-metadata:
-  name: bootstrap-system
-  namespace: argocd
-spec:
-  sourceRepos:
-    - "*"
-  destinations:
-    - namespace: "*"
-      server: "https://kubernetes.default.svc"
-  clusterResourceWhitelist:
-    - group: "*"
-      kind: "*"
----
-apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: system
@@ -28,12 +13,16 @@ spec:
         elements:
           - name: argocd
             path: bootstrap-system/argocd
+          - name: argocd-appproj
+            path: bootstrap-system/argocd-appproj
+          - name: external-secrets-operator
+            path: bootstrap-system/external-secrets-operator
           - name: external-secrets
             path: bootstrap-system/external-secrets
           - name: gateway-appset
-            path: bootstrap-system/gateway
-          - name: argocd-httproute
-            path: bootstrap-system/argocd-httproute
+            path: bootstrap-system/gateway-appset
+          - name: gateway-httproute
+            path: bootstrap-system/gateway-httproute
   strategy:
     type: RollingSync
     rollingSync:
@@ -45,6 +34,14 @@ spec:
         - matchExpressions:
             - key: /bootstrap-system
               operator: In
+              values: ["argocd-appproj"]
+        - matchExpressions:
+            - key: /bootstrap-system
+              operator: In
+              values: ["external-secrets-operator"]
+        - matchExpressions:
+            - key: /bootstrap-system
+              operator: In
               values: ["external-secrets"]
         - matchExpressions:
             - key: /bootstrap-system
@@ -53,7 +50,7 @@ spec:
         - matchExpressions:
             - key: /bootstrap-system
               operator: In
-              values: ["argocd-httproute"]
+              values: ["gateway-httproute"]
   template:
     metadata:
       name: "{{.name}}"
