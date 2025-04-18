@@ -3,8 +3,10 @@ kind: Application
 metadata:
   name: external-secrets-helm
   namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
   labels:
-    bootstrap-system/external-secrets: external-secrets-helm
+    bootstrap-system/external-secrets-operator: external-secrets-helm
 spec:
   destination:
     namespace: kube-system
