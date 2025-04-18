@@ -20,4 +20,4 @@ for path in $init_config_paths; do
     fi
 done
 
-kubectl apply -f applicationSet.yaml
+kubectl apply -f ../applicationSet.yaml

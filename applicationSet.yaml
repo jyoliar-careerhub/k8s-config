@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
-  name: bootstrap-system
+  name: root
   namespace: argocd
 spec:
   sourceRepos:
@@ -26,41 +26,23 @@ spec:
   generators:
     - list:
         elements:
-          - name: argocd
-            path: bootstrap-system/argocd
-          - name: external-secrets
-            path: bootstrap-system/external-secrets
-          - name: gateway-appset
-            path: bootstrap-system/gateway
-          - name: argocd-httproute
-            path: bootstrap-system/argocd-httproute
+          - name: bootstrap-system
+            path: bootstrap-system
   strategy:
     type: RollingSync
     rollingSync:
       steps:
         - matchExpressions:
-            - key: /bootstrap-system
+            - key: /
               operator: In
-              values: ["argocd"]
-        - matchExpressions:
-            - key: /bootstrap-system
-              operator: In
-              values: ["external-secrets"]
-        - matchExpressions:
-            - key: /bootstrap-system
-              operator: In
-              values: ["gateway-appset"]
-        - matchExpressions:
-            - key: /bootstrap-system
-              operator: In
-              values: ["argocd-httproute"]
+              values: ["bootstrap-system"]
   template:
     metadata:
       name: "{{.name}}"
       labels:
         bootstrap-system: "{{.name}}"
     spec:
-      project: bootstrap-system
+      project: root
       source:
         repoURL: git@github.com:jyoliar-careerhub/k8s-config.git
         targetRevision: feature/init-config
