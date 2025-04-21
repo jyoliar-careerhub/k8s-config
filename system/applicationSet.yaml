@@ -1,35 +1,23 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: root
+  name: system
   namespace: argocd
 spec:
-  syncPolicy:
-    preserveResourcesOnDeletion: true
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
   generators:
     - list:
         elements:
-          - name: bootstrap-system
-            path: bootstrap-system
-          - name: system
-            path: system
-  strategy:
-    type: RollingSync
-    rollingSync:
-      steps:
-        - matchExpressions:
-            - key: root
-              operator: In
-              values: ["bootstrap-system"]
+          - name: metrics-server
+            path: system/metrics-server
   template:
     metadata:
       name: "{{.name}}"
       labels:
-        root: "{{.name}}"
+        system: "{{.name}}"
     spec:
-      project: root
+      project: system
       source:
         repoURL: git@github.com:jyoliar-careerhub/k8s-config.git
         targetRevision: main
