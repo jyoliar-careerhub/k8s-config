@@ -12,12 +12,4 @@ fluentbit:
   name: fluentbit
 
 kubeLogsDir: /var/log/containers
-nodeSelector:
-  - key: "usage"
-    value: "monitoring"
-tolerations:
-  - key: "usage"
-    operator: "Equal"
-    value: "monitoring"
-    effect: "PreferNoSchedule"
 initialAdminPassword: Verylongpassword!@#$#213
