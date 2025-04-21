@@ -23,6 +23,10 @@ spec:
             - key: root
               operator: In
               values: ["bootstrap-system"]
+        - matchExpressions:
+            - key: root
+              operator: In
+              values: ["system"]
   template:
     metadata:
       name: "{{.name}}"
