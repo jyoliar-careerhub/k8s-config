@@ -1,0 +1,23 @@
+name: log-system
+targetNamespace: nginx-gateway
+
+opensearchDashboard:
+  name: dashboard
+  port: 8080
+
+opensearch:
+  name: opensearch
+
+fluentbit:
+  name: fluentbit
+
+kubeLogsDir: /var/log/containers
+nodeSelector:
+  - key: "usage"
+    value: "monitoring"
+tolerations:
+  - key: "usage"
+    operator: "Equal"
+    value: "monitoring"
+    effect: "PreferNoSchedule"
+initialAdminPassword: test

@@ -1,0 +1,59 @@
+{{- $opensearch_name := .Values.opensearch.name -}}
+{{- $name := print .Values.opensearchDashboard.name -}}
+{{- $port := .Values.opensearchDashboard.port -}}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ $name }}
+  labels:
+    k8s-app: {{ $name }}
+spec:
+  selector:
+    matchLabels:
+      k8s-app: {{ $name }}
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        k8s-app: {{ $name }}
+    spec:
+    {{- if .Values.nodeSelector }}
+      nodeSelector:
+        {{- range .Values.nodeSelector }}
+        {{ .key }}: {{ .value }}
+        {{- end }}
+    {{- end }}
+    {{- if .Values.tolerations }}
+      tolerations:
+        {{- range .Values.tolerations }}
+        - key: {{ .key }}
+          operator: {{ .operator }}
+          value: {{ .value }}
+          effect: {{ .effect }}
+        {{- end }}
+    {{- end }}
+      containers:
+        - name: {{ $name }}
+          image: opensearchproject/opensearch-dashboards:latest
+          imagePullPolicy: Always
+          env:
+            - name: OPENSEARCH_HOSTS
+              value: '["https://{{ $opensearch_name }}:9200"]'
+          ports:
+            - containerPort: 5601
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ $name }}
+  labels:
+    k8s-app: {{ $name }}
+spec:
+  type: ClusterIP
+  selector:
+    k8s-app: {{ $name }}
+  ports:
+    - protocol: TCP
+      port: {{ $port }}
+      targetPort: 5601

@@ -11,6 +11,9 @@ spec:
         elements:
           - name: metrics-server
             path: system/metrics-server
+          - name: log-system
+            path: system/log-system
+            namespace: kube-logs
   template:
     metadata:
       name: "{{.name}}"
@@ -24,6 +27,9 @@ spec:
         path: "{{.path}}"
       destination:
         server: https://kubernetes.default.svc
+        {{ if .namespace }}
+        namespace: "{{.namespace}}"
+        {{ end }}
       syncPolicy:
         automated:
           prune: true
