@@ -48,7 +48,7 @@ spec:
       project: bootstrap-system
       source:
         repoURL: git@github.com:jyoliar-careerhub/k8s-config.git
-        targetRevision: feature/init-config
+        targetRevision: main
         path: "{{.path}}"
       destination:
         server: https://kubernetes.default.svc
