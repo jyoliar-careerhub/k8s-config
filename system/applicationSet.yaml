@@ -17,8 +17,8 @@ spec:
   templatePatch: |
     spec:
       destination:
-        {{- if .namespace }}
-        namespace: "{{.namespace}}"
+        {{- with .namespace }}
+        namespace: "{{.}}"
         {{- end }}
   template:
     metadata:
