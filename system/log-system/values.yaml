@@ -20,4 +20,4 @@ tolerations:
     operator: "Equal"
     value: "monitoring"
     effect: "PreferNoSchedule"
-initialAdminPassword: verylongpassword!@#$#213
+initialAdminPassword: Verylongpassword!@#$#213
