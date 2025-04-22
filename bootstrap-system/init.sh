@@ -16,7 +16,7 @@ for path in $init_config_paths; do
         echo "Changes detected in $path. Applying changes..."
         kubectl apply -k "$path" | grep -v "unchanged"
         kubectl wait --for=condition=available --timeout=60s --all deployments -A > /dev/null
-        k wait --for=jsonpath='{.status.health.status}'=Healthy --timeout 60s --all app -A > /dev/null
+        kubectl wait --for=jsonpath='{.status.health.status}'=Healthy --timeout 60s --all app -A > /dev/null
         echo "Successfully applied changes in $path."
 
         sleep 5
