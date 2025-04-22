@@ -35,13 +35,11 @@ data:
     [OUTPUT]
         Name            opensearch
         Match           {{.Values.targetNamespace}}.*
-        Host            {{ $opensearch_name }}
-        Port            9200
+        Host            1yubq2ev4t7usxsvz77l.ap-south-1.aoss.amazonaws.com
+        Port            443
         Include_Tag_Key On 
         tls.verify      Off
         tls             On
-        HTTP_User       admin
-        HTTP_Passwd     {{ .Values.initialAdminPassword }}
         Suppress_Type_Name  On
         Logstash_Format On
         Logstash_Prefix {{.Values.targetNamespace}}
