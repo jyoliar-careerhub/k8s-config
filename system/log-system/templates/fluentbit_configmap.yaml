@@ -34,6 +34,7 @@ data:
         Match           {{ $opensearch_name }}.*
     [OUTPUT]
         Name            opensearch
+        AWS_Auth        On
         Match           {{.Values.targetNamespace}}.*
         Host            mo5yj3mhr9ikeb4mqrh5.ap-south-1.aoss.amazonaws.com
         Port            443
