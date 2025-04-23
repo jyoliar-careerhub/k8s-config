@@ -1,10 +1,6 @@
 name: log-system
 targetNamespace: nginx-gateway
 
-opensearchDashboard:
-  name: dashboard
-  port: 8080
-
 opensearch:
   name: opensearch
   endpoint: mo5yj3mhr9ikeb4mqrh5.ap-south-1.aoss.amazonaws.com
@@ -13,4 +9,3 @@ fluentbit:
   name: fluentbit
 
 kubeLogsDir: /var/log/containers
-initialAdminPassword: Verylongpassword!@#$#213

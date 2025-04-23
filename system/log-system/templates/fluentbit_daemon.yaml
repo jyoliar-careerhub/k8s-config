@@ -2,9 +2,7 @@
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  annotations:
-    eks.amazonaws.com/role-arn: "arn:aws:iam::986069063944:role/prod-fluentbit_opensearch_role"
-  name: fluentbit-opensearch-role
+  name: fluentbit-opensearch-role #pod identity
 ---
 apiVersion: apps/v1
 kind: DaemonSet
