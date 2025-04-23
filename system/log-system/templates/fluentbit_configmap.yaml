@@ -38,7 +38,7 @@ data:
         AWS_Region      ${AWS_REGION}
         AWS_Service_Name aoss
         Match           {{.Values.targetNamespace}}.*
-        Host            mo5yj3mhr9ikeb4mqrh5.ap-south-1.aoss.amazonaws.com
+        Host            {{.Values.opensearch.endpoint}}
         Port            443
         Include_Tag_Key On 
         tls.verify      Off
