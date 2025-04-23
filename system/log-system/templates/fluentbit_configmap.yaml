@@ -36,6 +36,7 @@ data:
         Name            opensearch
         AWS_Auth        On
         AWS_Region      ${AWS_REGION}
+        AWS_Role_ARN    ${AWS_ROLE_ARN}
         Match           {{.Values.targetNamespace}}.*
         Host            mo5yj3mhr9ikeb4mqrh5.ap-south-1.aoss.amazonaws.com
         Port            443
