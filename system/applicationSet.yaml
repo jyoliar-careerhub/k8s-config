@@ -15,11 +15,11 @@ spec:
             path: system/log-system
             namespace: kube-logs
   templatePatch: |
+    {{- with .namespace }}
     spec:
       destination:
-        {{- with .namespace }}
         namespace: "{{.}}"
-        {{- end }}
+    {{- end }}
   template:
     metadata:
       name: "{{.name}}"
