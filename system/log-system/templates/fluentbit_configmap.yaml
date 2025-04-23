@@ -35,7 +35,7 @@ data:
     [OUTPUT]
         Name            opensearch
         Match           {{.Values.targetNamespace}}.*
-        Host            1yubq2ev4t7usxsvz77l.ap-south-1.aoss.amazonaws.com
+        Host            mo5yj3mhr9ikeb4mqrh5.ap-south-1.aoss.amazonaws.com
         Port            443
         Include_Tag_Key On 
         tls.verify      Off
