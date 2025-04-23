@@ -25,7 +25,7 @@ spec:
       serviceAccountName: fluentbit-opensearch-role
       containers:
         - name: {{$name}}
-          image: fluent/fluent-bit:latest
+          image: public.ecr.aws/aws-observability/aws-for-fluent-bit:2.32.5.20250327
           imagePullPolicy: Always
           volumeMounts:
             - name: varlog
