@@ -3,7 +3,7 @@ targetNamespace: nginx-gateway
 
 opensearch:
   name: opensearch
-  endpoint: mo5yj3mhr9ikeb4mqrh5.ap-south-1.aoss.amazonaws.com
+  endpoint: 7iaph5gw00c1t18f84.ap-south-1.aoss.amazonaws.com
 
 fluentbit:
   name: fluentbit

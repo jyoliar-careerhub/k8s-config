@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: busybox
+  name: busybox
+  namespace: kube-logs
+spec:
+  containers:
+    - image: busybox
+      name: busybox
+      command: ["/bin/sh", "-c", "sleep 3600"]
+  serviceAccountName: fluentbit-opensearch-role
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: aws-cli
+  name: aws-cli
+  namespace: kube-logs
+spec:
+  containers:
+    - image: amazon/aws-cli
+      name: aws-cli
+      command: ["/bin/sh", "-c", "sleep 3600"]
+  serviceAccountName: fluentbit-opensearch-role
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
