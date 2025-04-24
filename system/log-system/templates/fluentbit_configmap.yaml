@@ -17,7 +17,7 @@ data:
     {{- range $ns := .Values.targetNamespaces }}
     [INPUT]
         Name              tail
-        Tag               {{ $ns }}
+        Tag               {{ $ns }}.*
         Path              {{$kube_logs_dir}}/*_{{ $ns }}_*.log
         Parser            cri
         Mem_Buf_Limit     5MB
@@ -37,7 +37,7 @@ data:
         AWS_Auth        On
         AWS_Region      ${AWS_REGION}
         AWS_Service_Name aoss
-        Match           {{ $ns }}
+        Match           {{ $ns }}.*
         Host            {{ $opensearch_endpoint }}
         Port            443
         Include_Tag_Key On 
