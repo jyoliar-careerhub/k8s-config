@@ -1,5 +1,6 @@
 name: log-system
-targetNamespace: nginx-gateway
+targetNamespaces:
+  - nginx-gateway
 
 opensearch:
   name: opensearch

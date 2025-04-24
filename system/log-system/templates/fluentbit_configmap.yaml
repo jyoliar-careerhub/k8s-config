@@ -1,4 +1,5 @@
-{{- $opensearch_name := .Values.opensearch.name -}}
+{{- $kube_logs_dir := .Values.kubeLogsDir -}}
+{{- $opensearch_endpoint := .Values.opensearch.endpoint -}}
 
 apiVersion: v1
 kind: ConfigMap
@@ -13,39 +14,39 @@ data:
         Log_Level     info
         Daemon        off
         Parsers_File  parsers.conf
+    {{- range $ns := .Values.targetNamespaces }}
     [INPUT]
         Name              tail
-        Tag               {{.Values.targetNamespace}}.*
-        Exclude_Path      {{.Values.kubeLogsDir}}/{{.Values.name}}*_{{.Values.targetNamespace}}_*.log
-        Path              {{.Values.kubeLogsDir}}/*_{{.Values.targetNamespace}}_*.log
+        Tag               {{ $ns }}
+        Path              {{$kube_logs_dir}}/*_{{ $ns }}_*.log
         Parser            cri
         Mem_Buf_Limit     5MB
         Skip_Long_Lines   On
         Refresh_Interval  10
+    {{- end }}
     [FILTER]
         Name            parser
-        Match           {{.Values.targetNamespace}}.*
+        Match           *
         Key_Name        log
         Parser          json_log
         Parser          pass_through
         Reserve_Data    On
-    [OUTPUT]
-        Name            stdout
-        Match           {{ $opensearch_name }}.*
+    {{- range $ns := .Values.targetNamespaces }}
     [OUTPUT]
         Name            opensearch
         AWS_Auth        On
         AWS_Region      ${AWS_REGION}
         AWS_Service_Name aoss
-        Match           {{.Values.targetNamespace}}.*
-        Host            {{.Values.opensearch.endpoint}}
+        Match           {{ $ns }}
+        Host            {{ $opensearch_endpoint }}
         Port            443
         Include_Tag_Key On 
         tls.verify      Off
         tls             On
         Suppress_Type_Name  On
         Logstash_Format On
-        Logstash_Prefix {{.Values.targetNamespace}}
+        Logstash_Prefix {{ $ns }}
+    {{- end }}
   parsers.conf: |
     [PARSER]
         Name        cri
