@@ -1,6 +1,7 @@
 name: log-system
 targetNamespaces:
   - nginx-gateway
+  - kube-system
 
 opensearch:
   name: opensearch
