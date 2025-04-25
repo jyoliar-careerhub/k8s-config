@@ -33,8 +33,9 @@ data:
     [FILTER]
         Name   lua
         Match  *
-        Call   add_tag
-        Code   function add_k8s_metadata(tag, ts, record)
+        Call   add_k8s_metadata
+        Code   |
+            function add_k8s_metadata(tag, ts, record)
                 local pod, uid, namespace, container = string.match(
                     tag,
                     "var%.log%.containers%.([^%-_]+%-%x+)_([^_]+)_([^%-_]+)%-[^%.]+%.log"
