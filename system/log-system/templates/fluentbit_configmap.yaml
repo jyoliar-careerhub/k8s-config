@@ -49,7 +49,8 @@ data:
         tls             On
         Suppress_Type_Name  On
         Logstash_Format On
-        Logstash_Prefix kube_logs
+        Logstash_Prefix unknown_kube_logs
+        Logstash_Prefix_Key $namespace.$pod
   parsers.conf: |
     [PARSER]
         Name        cri
