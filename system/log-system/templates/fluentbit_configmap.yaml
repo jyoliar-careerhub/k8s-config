@@ -16,7 +16,7 @@ data:
         Parsers_File  parsers.conf
     [INPUT]
         Name              tail
-        Tag               *
+        Tag               kube_logs
         Path              {{$kube_logs_dir}}/*
         Exclude_Path      {{.Values.kubeLogsDir}}/{{ .Values.fluentbit.name }}_*
         Parser            cri
@@ -25,14 +25,14 @@ data:
         Refresh_Interval  10
     [FILTER]
         Name            parser
-        Match           *
+        Match           kube_logs
         Key_Name        log
         Parser          json_log
         Parser          pass_through
         Reserve_Data    On
     [FILTER]
         Name   lua
-        Match  *
+        Match  kube_logs
         Call   add_k8s_metadata
         Script filter.lua
     [OUTPUT]
@@ -40,7 +40,7 @@ data:
         AWS_Auth        On
         AWS_Region      ${AWS_REGION}
         AWS_Service_Name aoss
-        Match           *
+        Match           kube_logs
         Host            {{ $opensearch_endpoint }}
         Port            443
         Include_Tag_Key On 
@@ -48,7 +48,7 @@ data:
         tls             On
         Suppress_Type_Name  On
         Logstash_Format On
-        Logstash_Prefix test
+        Logstash_Prefix kube_logs
   parsers.conf: |
     [PARSER]
         Name        cri
