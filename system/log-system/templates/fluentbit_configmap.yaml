@@ -14,16 +14,15 @@ data:
         Log_Level     info
         Daemon        off
         Parsers_File  parsers.conf
-    {{- range $ns := .Values.targetNamespaces }}
     [INPUT]
         Name              tail
-        Tag               {{ $ns }}.*
-        Path              {{$kube_logs_dir}}/*_{{ $ns }}_*.log
+        Tag               *
+        Path              {{$kube_logs_dir}}/*
+        Exclude_Path      {{.Values.kubeLogsDir}}/{{ .Values.fluentbit.name }}_*
         Parser            cri
         Mem_Buf_Limit     5MB
         Skip_Long_Lines   On
         Refresh_Interval  10
-    {{- end }}
     [FILTER]
         Name            parser
         Match           *
@@ -31,13 +30,37 @@ data:
         Parser          json_log
         Parser          pass_through
         Reserve_Data    On
-    {{- range $ns := .Values.targetNamespaces }}
+    [FILTER]
+        Name   lua
+        Match  *
+        Call   add_tag
+        Code   function add_k8s_metadata(tag, ts, record)
+                local pod, uid, namespace, container = string.match(
+                    tag,
+                    "var%.log%.containers%.([^%-_]+%-%x+)_([^_]+)_([^%-_]+)%-[^%.]+%.log"
+                )
+
+                if pod then
+                    record["pod"] = pod
+                end
+                if uid then
+                    record["pod_uid"] = uid
+                end
+                if namespace then
+                    record["namespace"] = namespace
+                end
+                if container then
+                    record["container"] = container
+                end
+
+                return 1, ts, record
+            end
     [OUTPUT]
         Name            opensearch
         AWS_Auth        On
         AWS_Region      ${AWS_REGION}
         AWS_Service_Name aoss
-        Match           {{ $ns }}.*
+        Match           *
         Host            {{ $opensearch_endpoint }}
         Port            443
         Include_Tag_Key On 
@@ -45,8 +68,7 @@ data:
         tls             On
         Suppress_Type_Name  On
         Logstash_Format On
-        Logstash_Prefix {{ $ns }}
-    {{- end }}
+        Logstash_Prefix test
   parsers.conf: |
     [PARSER]
         Name        cri
