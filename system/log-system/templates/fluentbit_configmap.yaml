@@ -23,6 +23,7 @@ data:
         Mem_Buf_Limit     5MB
         Skip_Long_Lines   On
         Refresh_Interval  10
+        Path_Key          log_file
     [FILTER]
         Name            parser
         Match           kube_logs
@@ -67,7 +68,7 @@ data:
   filter.lua: |
     function add_k8s_metadata(tag, ts, record)
         local pod, uid, namespace, container = string.match(
-            tag,
+            record["log_file"],
             "var%.log%.containers%.([^%-_]+%-%x+)_([^_]+)_([^%-_]+)%-[^%.]+%.log"
         )
 
