@@ -67,16 +67,16 @@ data:
 
   filter.lua: |
     function add_k8s_metadata(tag, ts, record)
-        local pod, uid, namespace, container = string.match(
+        local pod, namespace, container, container_id = string.match(
             record["log_file"],
-            "var%.log%.containers%.([^%-_]+%-%x+)_([^_]+)_([^%-_]+)%-[^%.]+%.log"
+            "/var/log/containers/([^_]+)_([^_]+)_([^%-]+)%-(%x+)%.log"
         )
 
         if pod then
             record["pod"] = pod
         end
-        if uid then
-            record["pod_uid"] = uid
+        if container_id then
+            record["container_id"] = container_id
         end
         if namespace then
             record["namespace"] = namespace
