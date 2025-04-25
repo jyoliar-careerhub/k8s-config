@@ -5,7 +5,7 @@ targetNamespaces:
 
 opensearch:
   name: opensearch
-  endpoint: 7iaph5gw00c1t18f84.ap-south-1.aoss.amazonaws.com
+  endpoint: fpkdup3xnbblpknzdgid.ap-south-1.aoss.amazonaws.com
 
 fluentbit:
   name: fluentbit
