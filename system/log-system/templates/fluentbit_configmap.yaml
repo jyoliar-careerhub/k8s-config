@@ -34,28 +34,7 @@ data:
         Name   lua
         Match  *
         Call   add_k8s_metadata
-        Code   |
-            function add_k8s_metadata(tag, ts, record)
-                local pod, uid, namespace, container = string.match(
-                    tag,
-                    "var%.log%.containers%.([^%-_]+%-%x+)_([^_]+)_([^%-_]+)%-[^%.]+%.log"
-                )
-
-                if pod then
-                    record["pod"] = pod
-                end
-                if uid then
-                    record["pod_uid"] = uid
-                end
-                if namespace then
-                    record["namespace"] = namespace
-                end
-                if container then
-                    record["container"] = container
-                end
-
-                return 1, ts, record
-            end
+        Script filter.lua
     [OUTPUT]
         Name            opensearch
         AWS_Auth        On
@@ -84,3 +63,26 @@ data:
         Name        pass_through
         Format      regex
         Regex       ^(?<raw_log>.*)$
+
+  filter.lua: |
+    function add_k8s_metadata(tag, ts, record)
+        local pod, uid, namespace, container = string.match(
+            tag,
+            "var%.log%.containers%.([^%-_]+%-%x+)_([^_]+)_([^%-_]+)%-[^%.]+%.log"
+        )
+
+        if pod then
+            record["pod"] = pod
+        end
+        if uid then
+            record["pod_uid"] = uid
+        end
+        if namespace then
+            record["namespace"] = namespace
+        end
+        if container then
+            record["container"] = container
+        end
+
+        return 1, ts, record
+    
