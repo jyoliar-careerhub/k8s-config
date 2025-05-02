@@ -33,7 +33,10 @@ spec:
             - name: OPENSEARCH_JAVA_OPTS
               value: "-Xms512m -Xmx512m"
             - name: OPENSEARCH_INITIAL_ADMIN_PASSWORD
-              value: "{{ .Values.initialAdminPassword }}"
+              valueFrom:
+                secretKeyRef:
+                  name: opensearch-secret
+                  key: password
           imagePullPolicy: Always
           volumeMounts:
             - name: opensearch-data
