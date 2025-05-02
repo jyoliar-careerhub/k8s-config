@@ -1,4 +1,4 @@
-{{- $name := .Values.fluentbit.name -}}
+{{- $name := .Values.name -}}
 apiVersion: v1
 kind: ServiceAccount
 metadata:
