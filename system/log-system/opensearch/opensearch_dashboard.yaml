@@ -25,13 +25,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{$name}}
+  name: opensearch-dashboard
   labels:
-    k8s-app: {{$name}}
+    k8s-app: opensearch-dashboard
 spec:
   type: ClusterIP
   selector:
-    k8s-app: {{$name}}
+    k8s-app: opensearch-dashboard
   ports:
     - protocol: TCP
       port: 5601
