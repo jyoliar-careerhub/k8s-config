@@ -9,10 +9,10 @@ spec:
   generators:
     - list:
         elements:
-          - name: opensearch_volume
-            path: system/log-system/opensearch_volume
-          - name: opensearch_secret
-            path: system/log-system/opensearch_secret
+          - name: opensearch-volume
+            path: system/log-system/opensearch-volume
+          - name: opensearch-secret
+            path: system/log-system/opensearch-secret
           - name: opensearch
             path: system/log-system/opensearch
           - name: fluentbit
@@ -24,7 +24,7 @@ spec:
         - matchExpressions:
             - key: system/log-system
               operator: In
-              values: ["opensearch_volume", "opensearch_secret"]
+              values: ["opensearch-volume", "opensearch-secret"]
         - matchExpressions:
             - key: system/log-system
               operator: In
