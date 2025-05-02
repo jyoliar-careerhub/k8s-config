@@ -42,6 +42,8 @@ data:
         Match           kube_logs
         Host            {{ $opensearch_endpoint }}
         Port            9200
+        HTTP_User       admin
+        HTTP_Passwd     ${OPENSEARCH_PASSWORD}
         Include_Tag_Key On 
         tls.verify      Off
         tls             On

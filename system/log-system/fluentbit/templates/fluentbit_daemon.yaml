@@ -20,6 +20,12 @@ spec:
         - name: {{$name}}
           image: fluent/fluent-bit:latest
           imagePullPolicy: Always
+          env:
+          - name: OPENSEARCH_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: opensearch-secret
+                key: password
           volumeMounts:
             - name: varlog
               mountPath: /var/log
