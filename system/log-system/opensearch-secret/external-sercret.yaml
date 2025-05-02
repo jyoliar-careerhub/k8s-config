@@ -10,6 +10,7 @@ spec:
   target:
     name: opensearch-secret
   data:
-    - key: /prod-eks/system/opensearch-secret
-      name: password
-      property: password
+    - secretKey: password
+      remoteRef:
+        key: /prod-eks/system/opensearch-secrets
+        property: password
