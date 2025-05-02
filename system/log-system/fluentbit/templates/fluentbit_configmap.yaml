@@ -39,12 +39,9 @@ data:
         Script filter.lua
     [OUTPUT]
         Name            opensearch
-        AWS_Auth        On
-        AWS_Region      ${AWS_REGION}
-        AWS_Service_Name aoss
         Match           kube_logs
         Host            {{ $opensearch_endpoint }}
-        Port            443
+        Port            9200
         Include_Tag_Key On 
         tls.verify      Off
         tls             On
