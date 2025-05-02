@@ -1,0 +1,15 @@
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: opensearch-secret
+spec:
+  secretStoreRef: # Secret을 가져올 SecretStore 작성
+    name: system-secretstore
+    kind: ClusterSecretStore
+  refreshInterval: 1h
+  target:
+    name: opensearch-secret
+  data:
+    - key: /prod-eks/system/opensearch-secret
+      name: password
+      property: password

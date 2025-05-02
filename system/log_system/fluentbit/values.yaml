@@ -1,0 +1,9 @@
+name: fluentbit
+targetNamespaces:
+  - nginx-gateway
+  - kube-system
+
+opensearch:
+  endpoint: opensearch
+
+kubeLogsDir: /var/log/containers

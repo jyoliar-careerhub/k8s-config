@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: system
+  name: log-system
   namespace: argocd
 spec:
   goTemplate: true
@@ -9,36 +9,27 @@ spec:
   generators:
     - list:
         elements:
-          - name: cluster-secret-store
-            path: system/cluster-secret-store
-          - name: metrics-server
-            path: system/metrics-server
-          # - name: log_system
-          #   path: system/log_system
-          #   namespace: kube-logs
-  # strategy:
-  #   type: RollingSync
-  #   rollingSync:
-  #     steps:
-  #       - matchExpressions:
-  #           - key: bootstrap-system
-  #             operator: In
-  #             values: ["argocd"]
-  #       - matchExpressions:
-  #           - key: bootstrap-system
-  #             operator: In
-  #             values: ["argocd-appproj"]
-  templatePatch: |
-    {{- with .namespace }}
-    spec:
-      destination:
-        namespace: "{{.}}"
-    {{- end }}
+          - name: opensearch
+            path: system/log_system/opensearch
+          - name: fluentbit
+            path: system/log_system/fluentbit
+  strategy:
+    type: RollingSync
+    rollingSync:
+      steps:
+        - matchExpressions:
+            - key: system/log_system
+              operator: In
+              values: ["opensearch"]
+        - matchExpressions:
+            - key: system/log_system
+              operator: In
+              values: ["fluentbit"]
   template:
     metadata:
       name: "{{.name}}"
       labels:
-        system: "{{.name}}"
+        system/log_system: "{{.name}}"
     spec:
       project: system
       source:

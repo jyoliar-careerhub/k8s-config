@@ -18,7 +18,7 @@ data:
         Name              tail
         Tag               kube_logs
         Path              {{$kube_logs_dir}}/*
-        Exclude_Path      {{.Values.kubeLogsDir}}/{{ .Values.fluentbit.name }}_*
+        Exclude_Path      {{.Values.kubeLogsDir}}/{{ .Values.name }}_*
         Parser            cri
         Mem_Buf_Limit     5MB
         Skip_Long_Lines   On
