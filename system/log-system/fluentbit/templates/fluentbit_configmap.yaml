@@ -8,7 +8,8 @@ metadata:
   labels:
     k8s-app: fluent-bit
   namespace: {{ .Release.Namespace }}
-data:
+data: #kube-logs에서 발생하는 로그가 순환참조로 과도해질 경우 아래 설정 추가
+#Exclude_Path      {{.Values.kubeLogsDir}}/*_{{ .Release.Namespace }}_*
   fluent-bit.conf: |
     [SERVICE]
         Flush         1
@@ -19,7 +20,6 @@ data:
         Name              tail
         Tag               kube_logs
         Path              {{$kube_logs_dir}}/*
-        Exclude_Path      {{.Values.kubeLogsDir}}/{{ .Values.name }}_*
         Parser            cri
         Mem_Buf_Limit     5MB
         Skip_Long_Lines   On
