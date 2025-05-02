@@ -36,6 +36,7 @@ spec:
   template:
     metadata:
       name: "{{.name}}"
+      namespace: kube-logs
       labels:
         system/log-system: "{{.name}}"
     spec:

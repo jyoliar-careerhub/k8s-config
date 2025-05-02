@@ -15,7 +15,6 @@ spec:
             path: system/metrics-server
           - name: log-system
             path: system/log-system
-            namespace: kube-logs
   strategy:
     type: RollingSync
     rollingSync:
