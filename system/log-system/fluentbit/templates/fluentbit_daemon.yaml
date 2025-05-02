@@ -1,13 +1,9 @@
 {{- $name := .Values.name -}}
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: fluentbit-opensearch-role #pod identity
----
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: {{$name}}
+  namespace: {{ .Release.Namespace }}
 spec:
   selector:
     matchLabels:
@@ -20,7 +16,6 @@ spec:
       labels:
         k8s-app: {{$name}}
     spec:
-      serviceAccountName: fluentbit-opensearch-role
       containers:
         - name: {{$name}}
           image: public.ecr.aws/aws-observability/aws-for-fluent-bit:2.32.5.20250327
