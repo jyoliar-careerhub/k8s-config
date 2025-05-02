@@ -13,8 +13,8 @@ spec:
             path: system/cluster-secret-store
           - name: metrics-server
             path: system/metrics-server
-          - name: log_system
-            path: system/log_system
+          - name: log-system
+            path: system/log-system
             namespace: kube-logs
   strategy:
     type: RollingSync
@@ -27,7 +27,7 @@ spec:
         - matchExpressions:
             - key: system
               operator: In
-              values: ["log_system"]
+              values: ["log-system"]
   templatePatch: |
     {{- with .namespace }}
     spec:

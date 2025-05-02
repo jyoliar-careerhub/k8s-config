@@ -10,34 +10,34 @@ spec:
     - list:
         elements:
           - name: opensearch_volume
-            path: system/log_system/opensearch_volume
+            path: system/log-system/opensearch_volume
           - name: opensearch_secret
-            path: system/log_system/opensearch_secret
+            path: system/log-system/opensearch_secret
           - name: opensearch
-            path: system/log_system/opensearch
+            path: system/log-system/opensearch
           - name: fluentbit
-            path: system/log_system/fluentbit
+            path: system/log-system/fluentbit
   strategy:
     type: RollingSync
     rollingSync:
       steps:
         - matchExpressions:
-            - key: system/log_system
+            - key: system/log-system
               operator: In
               values: ["opensearch_volume", "opensearch_secret"]
         - matchExpressions:
-            - key: system/log_system
+            - key: system/log-system
               operator: In
               values: ["opensearch"]
         - matchExpressions:
-            - key: system/log_system
+            - key: system/log-system
               operator: In
               values: ["fluentbit"]
   template:
     metadata:
       name: "{{.name}}"
       labels:
-        system/log_system: "{{.name}}"
+        system/log-system: "{{.name}}"
     spec:
       project: system
       source:
