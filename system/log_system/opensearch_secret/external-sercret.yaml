@@ -4,7 +4,7 @@ metadata:
   name: opensearch-secret
 spec:
   secretStoreRef: # Secret을 가져올 SecretStore 작성
-    name: system-secretstore
+    name: system-cluster-secret-store
     kind: ClusterSecretStore
   refreshInterval: 1h
   target:

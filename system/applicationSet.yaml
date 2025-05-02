@@ -13,21 +13,21 @@ spec:
             path: system/cluster-secret-store
           - name: metrics-server
             path: system/metrics-server
-          # - name: log_system
-          #   path: system/log_system
-          #   namespace: kube-logs
-  # strategy:
-  #   type: RollingSync
-  #   rollingSync:
-  #     steps:
-  #       - matchExpressions:
-  #           - key: bootstrap-system
-  #             operator: In
-  #             values: ["argocd"]
-  #       - matchExpressions:
-  #           - key: bootstrap-system
-  #             operator: In
-  #             values: ["argocd-appproj"]
+          - name: log_system
+            path: system/log_system
+            namespace: kube-logs
+  strategy:
+    type: RollingSync
+    rollingSync:
+      steps:
+        - matchExpressions:
+            - key: system
+              operator: In
+              values: ["cluster-secret-store"]
+        - matchExpressions:
+            - key: system
+              operator: In
+              values: ["log_system"]
   templatePatch: |
     {{- with .namespace }}
     spec:

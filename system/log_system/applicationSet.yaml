@@ -9,6 +9,10 @@ spec:
   generators:
     - list:
         elements:
+          - name: opensearch_volume
+            path: system/log_system/opensearch_volume
+          - name: opensearch_secret
+            path: system/log_system/opensearch_secret
           - name: opensearch
             path: system/log_system/opensearch
           - name: fluentbit
@@ -17,6 +21,10 @@ spec:
     type: RollingSync
     rollingSync:
       steps:
+        - matchExpressions:
+            - key: system/log_system
+              operator: In
+              values: ["opensearch_volume", "opensearch_secret"]
         - matchExpressions:
             - key: system/log_system
               operator: In
