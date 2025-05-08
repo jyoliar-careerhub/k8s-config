@@ -22,7 +22,7 @@ spec:
         - matchExpressions:
             - key: system
               operator: In
-              values: ["cluster-secret-store"]
+              values: ["cluster-secret-store", "metrics-server"]
         - matchExpressions:
             - key: system
               operator: In
