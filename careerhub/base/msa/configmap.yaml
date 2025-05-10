@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: review-service-config
+data:
+  RESTAPI_GRPC_PORT: "50051"
+  CRAWLER_GRPC_PORT: "50052"
+  PROVIDER_GRPC_PORT: "50053"
+  MONGO_AUTH_MECHANISM: "MONGODB-AWS"
+  MONGO_AUTH_SOURCE: "$external"

@@ -1,0 +1,10 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: review-service
+spec:
+  template:
+    spec:
+      containers:
+        - name: review-service
+          image: "986069063944.dkr.ecr.ap-south-1.amazonaws.com/prod-review-service-ecr:2025.05.10-11.48.03"

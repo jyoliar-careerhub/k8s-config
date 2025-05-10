@@ -11,8 +11,8 @@ spec:
         elements:
           - name: prod-careerhub-secret-store
             path: careerhub/prod/secret-store
-          # - name: prod-careerhub-msa
-          #   path: careerhub/prod/msa
+          - name: prod-careerhub-msa
+            path: careerhub/prod/msa
   strategy:
     type: RollingSync
     rollingSync:
@@ -21,10 +21,10 @@ spec:
             - key: careerhub/prod
               operator: In
               values: ["prod-careerhub-secret-store"]
-        # - matchExpressions:
-        #     - key: careerhub/prod
-        #       operator: In
-        #       values: ["prod-careerhub-msa"]
+        - matchExpressions:
+            - key: careerhub/prod
+              operator: In
+              values: ["prod-careerhub-msa"]
   template:
     metadata:
       name: "{{.name}}"

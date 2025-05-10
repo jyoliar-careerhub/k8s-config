@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: review-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: review-service
+  template:
+    metadata:
+      labels:
+        app: review-service
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: review-service
+          env:
+            - name: MONGO_URI
+              valueFrom:
+                secretKeyRef:
+                  name: review-mongodb
+                  key: endpoint
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: review-mongodb
+                  key: collection
+          envFrom:
+            - configMapRef:
+                name: review-service-config
