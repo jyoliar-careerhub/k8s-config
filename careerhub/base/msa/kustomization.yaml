@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - configmap.yaml
   - review-service.yaml
+  - posting-service.yaml
