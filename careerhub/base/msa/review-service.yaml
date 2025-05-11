@@ -1,3 +1,8 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: review-service
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -12,6 +17,7 @@ spec:
       labels:
         app: review-service
     spec:
+      serviceAccountName: review-service
       restartPolicy: Always
       containers:
         - name: review-service
