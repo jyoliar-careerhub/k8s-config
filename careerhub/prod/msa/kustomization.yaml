@@ -7,3 +7,4 @@ resources:
 patches:
   - path: review-service-patch.yaml
   - path: posting-service-patch.yaml
+  - path: userinfo-service-patch.yaml

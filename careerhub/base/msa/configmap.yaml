@@ -20,3 +20,13 @@ data:
   SUGGESTER_GRPC_PORT: "50054"
   MONGO_AUTH_MECHANISM: "MONGODB-AWS"
   MONGO_AUTH_SOURCE: "$external"
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: userinfo-service-config
+data:
+  RESTAPI_GRPC_PORT: "50051"
+  SUGGESTER_GRPC_PORT: "50052"
+  MONGO_AUTH_MECHANISM: "MONGODB-AWS"
+  MONGO_AUTH_SOURCE: "$external"

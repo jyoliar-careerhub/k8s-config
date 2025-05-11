@@ -5,3 +5,4 @@ resources:
   - configmap.yaml
   - review-service.yaml
   - posting-service.yaml
+  - userinfo-service.yaml
