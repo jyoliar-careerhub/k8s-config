@@ -1,6 +1,8 @@
 apiVersion: v1
 kind: ServiceAccount
 metadata:
+  annotations:
+    eks.amazonaws.com/role-arn: "arn:aws:iam::986069063944:role/prod-review-service"
   name: review-service
 ---
 apiVersion: apps/v1
@@ -31,7 +33,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: review-mongodb
-                  key: collection
+                  key: database
           envFrom:
             - configMapRef:
                 name: review-service-config
