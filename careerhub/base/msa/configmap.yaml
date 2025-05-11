@@ -8,3 +8,15 @@ data:
   PROVIDER_GRPC_PORT: "50053"
   MONGO_AUTH_MECHANISM: "MONGODB-AWS"
   MONGO_AUTH_SOURCE: "$external"
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: posting-service-config
+data:
+  PROVIDER_GRPC_PORT: "50051"
+  SCANNER_GRPC_PORT: "50052"
+  RESTAPI_GRPC_PORT: "50053"
+  SUGGESTER_GRPC_PORT: "50054"
+  MONGO_AUTH_MECHANISM: "MONGODB-AWS"
+  MONGO_AUTH_SOURCE: "$external"
