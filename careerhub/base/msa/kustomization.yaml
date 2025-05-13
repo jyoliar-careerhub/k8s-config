@@ -6,3 +6,4 @@ resources:
   - posting-service.yaml
   - userinfo-service.yaml
   - api-composer.yaml
+  - auth-service.yaml
