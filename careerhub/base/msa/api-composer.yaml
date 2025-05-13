@@ -44,14 +44,11 @@ spec:
                 configMapKeyRef:
                   name: review-service-config
                   key: RESTAPI_GRPC_ENDPOINT
-            - name: SECRET_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: jwt-secretkey
-                  key: jwt-secretkey
           envFrom:
             - configMapRef:
                 name: api-composer-config
+            - secretRef:
+                name: jwt-secretkey
 ---
 apiVersion: v1
 kind: Service
