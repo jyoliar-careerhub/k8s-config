@@ -15,8 +15,8 @@ spec:
             path: bootstrap-system
           - name: system
             path: system
-          - name: careerhub
-            path: careerhub
+          # - name: careerhub
+          #   path: careerhub
   strategy:
     type: RollingSync
     rollingSync:
@@ -29,10 +29,10 @@ spec:
             - key: root
               operator: In
               values: ["system"]
-        - matchExpressions:
-            - key: root
-              operator: In
-              values: ["careerhub"]
+        # - matchExpressions:
+        #     - key: root
+        #       operator: In
+        #       values: ["careerhub"]
   template:
     metadata:
       name: "{{.name}}"
