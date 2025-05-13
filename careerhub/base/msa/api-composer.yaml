@@ -37,9 +37,8 @@ spec:
             - name: USERINFO_GRPC_ENDPOINT
               valueFrom:
                 configMapKeyRef:
-              value:
-                name: userinfo-service
-                key: RESTAPI_GRPC_ENDPOINT
+                  name: userinfo-service
+                  key: RESTAPI_GRPC_ENDPOINT
             - name: REVIEW_GRPC_ENDPOINT
               valueFrom:
                 configMapKeyRef:
