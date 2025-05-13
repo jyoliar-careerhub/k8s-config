@@ -1,0 +1,70 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: api-composer-config
+  labels:
+    app: api-composer
+data:
+  API_PORT: "8080"
+  ROOT_PATH: "/api"
+  # ACCESS_CONTROL_ALLOW_ORIGIN
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-composer
+  labels:
+    app: api-composer
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: api-composer
+  template:
+    metadata:
+      labels:
+        app: api-composer
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: api-composer
+          env:
+            - name: POSTING_GRPC_ENDPOINT
+              valueFrom:
+                configMapKeyRef:
+                  name: posting-service
+                  key: RESTAPI_GRPC_ENDPOINT
+            - name: USERINFO_GRPC_ENDPOINT
+              valueFrom:
+                configMapKeyRef:
+              value:
+                name: userinfo-service
+                key: RESTAPI_GRPC_ENDPOINT
+            - name: REVIEW_GRPC_ENDPOINT
+              valueFrom:
+                configMapKeyRef:
+                  name: review-service
+                  key: RESTAPI_GRPC_ENDPOINT
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secretkey
+                  key: jwt-secretkey
+          envFrom:
+            - configMapRef:
+                name: api-composer-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: api-composer
+  labels:
+    app: api-composer
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+  selector:
+    app: api-composer

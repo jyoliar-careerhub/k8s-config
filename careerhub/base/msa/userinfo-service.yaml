@@ -1,14 +1,32 @@
 apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: userinfo-service-config
+  labels:
+    app: userinfo-service
+data:
+  RESTAPI_GRPC_PORT: "50051"
+  RESTAPI_GRPC_ENDPOINT: "userinfo-service:50051"
+
+  SUGGESTER_GRPC_PORT: "50052"
+  MONGO_AUTH_MECHANISM: "MONGODB-AWS"
+  MONGO_AUTH_SOURCE: "$external"
+---
+apiVersion: v1
 kind: ServiceAccount
 metadata:
   annotations:
     eks.amazonaws.com/role-arn: "arn:aws:iam::986069063944:role/prod-userinfo-service"
   name: userinfo-service
+  labels:
+    app: userinfo-service
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: userinfo-service
+  labels:
+    app: userinfo-service
 spec:
   replicas: 2
   selector:
@@ -37,3 +55,21 @@ spec:
           envFrom:
             - configMapRef:
                 name: userinfo-service-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: userinfo-service
+  labels:
+    app: userinfo-service
+spec:
+  type: ClusterIP
+  ports:
+    - name: restapi-grpc
+      port: 50051
+      targetPort: 50051
+    - name: suggester-grpc
+      port: 50052
+      targetPort: 50052
+  selector:
+    app: userinfo-service

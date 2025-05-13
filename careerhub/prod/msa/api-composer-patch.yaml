@@ -1,0 +1,10 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-composer
+spec:
+  template:
+    spec:
+      containers:
+        - name: userinfo-service
+          image: "986069063944.dkr.ecr.ap-south-1.amazonaws.com/prod-api-composer-ecr:2025.05.13-05.17.08"
