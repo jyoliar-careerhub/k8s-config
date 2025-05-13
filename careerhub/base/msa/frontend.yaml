@@ -1,4 +1,3 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -15,7 +14,6 @@ spec:
       labels:
         app: frontend
     spec:
-      serviceAccountName: frontend
       containers:
         - name: frontend
           env:
