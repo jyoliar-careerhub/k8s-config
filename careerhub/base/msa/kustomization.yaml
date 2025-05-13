@@ -7,3 +7,4 @@ resources:
   - userinfo-service.yaml
   - api-composer.yaml
   - auth-service.yaml
+  - frontend.yaml
