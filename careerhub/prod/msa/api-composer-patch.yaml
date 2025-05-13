@@ -6,5 +6,5 @@ spec:
   template:
     spec:
       containers:
-        - name: userinfo-service
+        - name: api-composer
           image: "986069063944.dkr.ecr.ap-south-1.amazonaws.com/prod-api-composer-ecr:2025.05.13-05.17.08"
