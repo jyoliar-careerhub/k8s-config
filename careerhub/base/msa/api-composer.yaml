@@ -32,17 +32,17 @@ spec:
             - name: POSTING_GRPC_ENDPOINT
               valueFrom:
                 configMapKeyRef:
-                  name: posting-service
+                  name: posting-service-config
                   key: RESTAPI_GRPC_ENDPOINT
             - name: USERINFO_GRPC_ENDPOINT
               valueFrom:
                 configMapKeyRef:
-                  name: userinfo-service
+                  name: userinfo-service-config
                   key: RESTAPI_GRPC_ENDPOINT
             - name: REVIEW_GRPC_ENDPOINT
               valueFrom:
                 configMapKeyRef:
-                  name: review-service
+                  name: review-service-config
                   key: RESTAPI_GRPC_ENDPOINT
             - name: SECRET_KEY
               valueFrom:
