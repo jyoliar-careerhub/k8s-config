@@ -8,3 +8,4 @@ resources:
   - api-composer.yaml
   - auth-service.yaml
   - frontend.yaml
+  - httproute.yaml
