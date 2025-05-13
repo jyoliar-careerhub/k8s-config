@@ -1,0 +1,10 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  template:
+    spec:
+      containers:
+        - name: frontend
+          image: "986069063944.dkr.ecr.ap-south-1.amazonaws.com/prod-frontend-ecr:2025.05.13-08.55.55"

@@ -10,3 +10,4 @@ patches:
   - path: userinfo-service-patch.yaml
   - path: api-composer-patch.yaml
   - path: auth-service-patch.yaml
+  - path: frontend-patch.yaml
