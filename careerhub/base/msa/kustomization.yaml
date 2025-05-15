@@ -10,3 +10,4 @@ resources:
   - frontend.yaml
   - httproute.yaml
   - posting-provider.yaml
+  - review-crawler.yaml

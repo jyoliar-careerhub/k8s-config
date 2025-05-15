@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: review-crawler
+spec:
+  schedule: "12 * * * *"
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: Never
+          containers:
+            - name: review-crawler
+              env:
+                - name: REVIEW_GRPC_ENDPOINT
+                  valueFrom:
+                    configMapKeyRef:
+                      name: review-service-config
+                      key: CRAWLER_GRPC_ENDPOINT
+  concurrencyPolicy: Forbid

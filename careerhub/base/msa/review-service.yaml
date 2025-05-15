@@ -9,6 +9,8 @@ data:
   RESTAPI_GRPC_ENDPOINT: "review-service:50051"
 
   CRAWLER_GRPC_PORT: "50052"
+  CRAWLER_GRPC_ENDPOINT: "review-service:50052"
+
   PROVIDER_GRPC_PORT: "50053"
   PROVIDER_GRPC_ENDPOINT: "review-service:50053"
 

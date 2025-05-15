@@ -1,0 +1,12 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: review-crawler
+spec:
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: review-crawler
+              image: "986069063944.dkr.ecr.ap-south-1.amazonaws.com/prod-review-crawler-ecr:2025.05.13-05.16.50"
