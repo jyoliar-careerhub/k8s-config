@@ -8,9 +8,6 @@ patches:
   - path: review-service-patch.yaml
   - path: posting-service-patch.yaml
   - path: userinfo-service-patch.yaml
-  - path: api-composer-patch.yaml
-  - path: auth-service-patch.yaml
-  - path: frontend-patch.yaml
   - path: posting-provider-patch.yaml
   - path: review-crawler-patch.yaml
   - path: posting-skillscanner-patch.yaml

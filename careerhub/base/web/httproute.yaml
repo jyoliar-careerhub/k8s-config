@@ -3,8 +3,7 @@ kind: HTTPRoute
 metadata:
   name: careerhub-httproute
 spec:
-  hostnames:
-    - prod-careerhub.jyo-liar.com
+  hostnames: # patch에서 설정된 hostnames를 사용
   parentRefs:
     - name: nginx-gateway
       namespace: nginx-gateway

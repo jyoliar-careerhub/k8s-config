@@ -6,7 +6,7 @@ metadata:
     app: auth-service
 data:
   API_PORT: "8080"
-  MAILER_GRPC_PORT: "50051"
+  MAILER_GRPC_PORT: "50051" #실제로는 운영되지 않음
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -56,9 +56,9 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-    - name: mailer-grpc
-      port: 50051
-      targetPort: 50051
+    # - name: mailer-grpc
+    #   port: 50051
+    #   targetPort: 50051
     - name: restapi
       port: 8080
       targetPort: 8080
