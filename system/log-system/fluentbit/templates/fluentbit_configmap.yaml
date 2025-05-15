@@ -80,7 +80,13 @@ data: #kube-logs에서 발생하는 로그가 순환참조로 과도해질 경�
             record["namespace"] = namespace
         end
         if container then
-            record["container"] = container
+            local container_name, container_id = string.match(container, "^(.-)%-(%x+)$")
+            if container_name then
+                record["container_name"] = container_name
+            end
+            if container_id then
+                record["container_id"] = container_id
+            end
         end
 
         return 1, ts, record
