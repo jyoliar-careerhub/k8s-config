@@ -9,4 +9,4 @@ spec:
         spec:
           containers:
             - name: review-crawler
-              image: "986069063944.dkr.ecr.ap-south-1.amazonaws.com/prod-review-crawler-ecr:2025.05.13-05.16.50"
+              image: "986069063944.dkr.ecr.ap-south-1.amazonaws.com/prod-review-crawler-ecr:2025.05.15-07.11.41"

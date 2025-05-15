@@ -12,4 +12,4 @@ patches:
   - path: auth-service-patch.yaml
   - path: frontend-patch.yaml
   - path: posting-provider-patch.yaml
-  # - path: review-crawler-patch.yaml
+  - path: review-crawler-patch.yaml
