@@ -68,16 +68,13 @@ data: #kube-logs에서 발생하는 로그가 순환참조로 과도해질 경�
 
   filter.lua: |
     function add_k8s_metadata(tag, ts, record)
-        local pod, namespace, container, container_id = string.match(
+        local pod, namespace, container = string.match(
             record["log_file"],
-            "/var/log/containers/([^_]+)_([^_]+)_([^%-]+)%-(%x+)%.log"
+            "/var/log/containers/([^_]+)_([^_]+)_([^_]+).log"
         )
 
         if pod then
             record["pod"] = pod
-        end
-        if container_id then
-            record["container_id"] = container_id
         end
         if namespace then
             record["namespace"] = namespace
