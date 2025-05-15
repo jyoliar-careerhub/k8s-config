@@ -27,12 +27,6 @@ spec:
         - path:
             type: PathPrefix
             value: /auth
-      filters:
-        - type: URLRewrite
-          urlRewrite:
-            path:
-              type: ReplacePrefixMatch
-              replacePrefixMatch: /
       backendRefs:
         - name: auth-service
           port: 8080
