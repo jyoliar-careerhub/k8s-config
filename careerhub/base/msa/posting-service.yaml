@@ -9,6 +9,7 @@ data:
   PROVIDER_GRPC_ENDPOINT: "posting-service:50051"
 
   SCANNER_GRPC_PORT: "50052"
+  SCANNER_GRPC_ENDPOINT: "posting-service:50052"
 
   RESTAPI_GRPC_PORT: "50053"
   RESTAPI_GRPC_ENDPOINT: "posting-service:50053"

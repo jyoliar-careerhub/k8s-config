@@ -11,3 +11,4 @@ resources:
   - httproute.yaml
   - posting-provider.yaml
   - review-crawler.yaml
+  - posting-skillscanner.yaml

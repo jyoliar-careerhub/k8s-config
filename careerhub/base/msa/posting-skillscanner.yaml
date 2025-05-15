@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: posting-skillscanner
+spec:
+  schedule: "09 06 * * *"
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: Never
+          containers:
+            - name: posting-skillscanner
+              env:
+                - name: GRPC_ENDPOINT
+                  valueFrom:
+                    configMapKeyRef:
+                      name: posting-service-config
+                      key: SCANNER_GRPC_ENDPOINT
+  concurrencyPolicy: Forbid

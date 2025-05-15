@@ -13,3 +13,4 @@ patches:
   - path: frontend-patch.yaml
   - path: posting-provider-patch.yaml
   - path: review-crawler-patch.yaml
+  - path: posting-skillscanner-patch.yaml
