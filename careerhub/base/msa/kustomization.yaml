@@ -9,3 +9,4 @@ resources:
   - auth-service.yaml
   - frontend.yaml
   - httproute.yaml
+  - posting-provider.yaml

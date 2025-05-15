@@ -1,0 +1,25 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: posting-provider-wanted
+spec:
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: posting-provider
+              image: "986069063944.dkr.ecr.ap-south-1.amazonaws.com/prod-posting-provider-ecr:2025.05.13-05.16.34"
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: posting-provider-jumpit
+spec:
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: posting-provider
+              image: "986069063944.dkr.ecr.ap-south-1.amazonaws.com/prod-posting-provider-ecr:2025.05.13-05.16.34"

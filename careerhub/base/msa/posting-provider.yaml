@@ -1,0 +1,61 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: posting-provider-wanted
+  labels:
+    app: posting-provider-wanted
+spec:
+  schedule: "09 19 * * *"
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: Never
+          containers:
+            - name: posting-provider
+              args: ["-site=wanted"]
+              env:
+                - name: JOB_POSTING_GRPC_ENDPOINT
+                  valueFrom:
+                    configMapKeyRef:
+                      name: posting-service-config
+                      key: PROVIDER_GRPC_ENDPOINT
+                - name: REVIEW_GRPC_ENDPOINT
+                  valueFrom:
+                    configMapKeyRef:
+                      name: review-service-config
+                      key: PROVIDER_GRPC_ENDPOINT
+  concurrencyPolicy: Forbid
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: posting-provider-jumpit
+  labels:
+    app: posting-provider-jumpit
+spec:
+  schedule: "09 19 * * *"
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: Never
+          containers:
+            - name: posting-provider
+              args: ["-site=jumpit"]
+              env:
+                - name: JOB_POSTING_GRPC_ENDPOINT
+                  valueFrom:
+                    configMapKeyRef:
+                      name: posting-service-config
+                      key: PROVIDER_GRPC_ENDPOINT
+                - name: REVIEW_GRPC_ENDPOINT
+                  valueFrom:
+                    configMapKeyRef:
+                      name: review-service-config
+                      key: PROVIDER_GRPC_ENDPOINT
+  concurrencyPolicy: Forbid
