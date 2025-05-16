@@ -79,8 +79,7 @@ spec:
                                   '"request_time":"$request_time",'
                                   '"upstream_response_time":"$upstream_response_time",'
                                   '"userid":"$cookie__userId"}';
-    - context: http.server
-      value: access_log stdout json_format;
+        access_log stdout json_format;
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
@@ -104,8 +103,3 @@ spec:
             path:
               type: ReplaceFullPath
               replaceFullPath: /
-        - type: ExtensionRef
-          extensionRef:
-            group: gateway.nginx.org
-            kind: SnippetsFilter
-            name: json-access-log
