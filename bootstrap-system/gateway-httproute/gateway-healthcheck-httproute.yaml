@@ -78,6 +78,9 @@ spec:
                                   '"http_user_agent":"$http_user_agent",'
                                   '"request_time":"$request_time",'
                                   '"upstream_response_time":"$upstream_response_time",'
+                                  '"http_host": "$http_host",'
+                                  '"request_uri":"$request_uri",'
+                                  '"request_method":"$request_method",'
                                   '"userid":"$cookie__userId"}';
         access_log /dev/stdout json_format;
 ---
