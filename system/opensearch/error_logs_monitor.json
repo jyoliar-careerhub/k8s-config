@@ -1,0 +1,123 @@
+{
+  "name": "error log monitor",
+  "type": "monitor",
+  "monitor_type": "query_level_monitor",
+  "enabled": true,
+  "schedule": {
+    "period": {
+      "unit": "MINUTES",
+      "interval": 1
+    }
+  },
+  "inputs": [
+    {
+      "search": {
+        "indices": ["prod-careerhub*"],
+        "query": {
+          "size": 10,
+          "query": {
+            "bool": {
+              "filter": [
+                {
+                  "match": {
+                    "level": {
+                      "query": "ERROR",
+                      "operator": "OR",
+                      "prefix_length": 0,
+                      "max_expansions": 50,
+                      "fuzzy_transpositions": true,
+                      "lenient": false,
+                      "zero_terms_query": "NONE",
+                      "auto_generate_synonyms_phrase_query": true,
+                      "boost": 1
+                    }
+                  }
+                },
+                {
+                  "range": {
+                    "@timestamp": {
+                      "from": "{{period_end}}||-1m",
+                      "to": "{{period_end}}",
+                      "include_lower": true,
+                      "include_upper": true,
+                      "format": "epoch_millis",
+                      "boost": 1
+                    }
+                  }
+                }
+              ],
+              "adjust_pure_negative": true,
+              "boost": 1
+            }
+          }
+        }
+      }
+    }
+  ],
+  "triggers": [
+    {
+      "query_level_trigger": {
+        "id": "wpDslpQBiL4IFkvwOrdK",
+        "name": "error log trigger",
+        "severity": "1",
+        "condition": {
+          "script": {
+            "source": "ctx.results[0].hits.total.value > 0",
+            "lang": "painless"
+          }
+        },
+        "actions": [
+          {
+            "id": "notification714366",
+            "name": "sending msg to slack",
+            "destination_id": "j9Vc15YBDesc143TDgyp",
+            "message_template": {
+              "source": "{{#ctx.results.0.hits.hits}}\nhostname: {{_source.metadata.hostname}}\napp: {{_source.metadata.app}}\nlevel: {{_source.level}}\nmsg: {{_source.msg}}\ncreatedAt: {{_source.createdAt}}\n-------------------------------------------------------------------------------------------------------------------------------------------------\n\n{{/ctx.results.0.hits.hits}}",
+              "lang": "mustache"
+            },
+            "throttle_enabled": false,
+            "subject_template": {
+              "source": "[careerhub] Caused error logs",
+              "lang": "mustache"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "ui_metadata": {
+    "schedule": {
+      "timezone": null,
+      "frequency": "interval",
+      "period": {
+        "unit": "MINUTES",
+        "interval": 1
+      },
+      "daily": 0,
+      "weekly": {
+        "tue": false,
+        "wed": false,
+        "thur": false,
+        "sat": false,
+        "fri": false,
+        "mon": false,
+        "sun": false
+      },
+      "monthly": {
+        "type": "day",
+        "day": 1
+      },
+      "cronExpression": "0 */1 * * *"
+    },
+    "monitor_type": "query_level_monitor",
+    "search": {
+      "searchType": "query",
+      "timeField": "",
+      "aggregations": [],
+      "groupBy": [],
+      "bucketValue": 1,
+      "bucketUnitOfTime": "h",
+      "filters": []
+    }
+  }
+}
