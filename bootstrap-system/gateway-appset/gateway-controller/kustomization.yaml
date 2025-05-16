@@ -3,7 +3,16 @@ kind: Kustomization
 
 resources:
   - https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1.6.2/deploy/default/deploy.yaml
+  - clusterrole.yaml
 
 patches:
   - path: loadbalancer-patch.yaml
   # - path: configmap-patch.yaml
+  - target:
+      version: v1
+      kind: Deployment
+      name: nginx-gateway
+    patch: |
+      - op: add
+        path: /spec/template/spec/containers/0/args/-
+        value: "--snippets-filters"
