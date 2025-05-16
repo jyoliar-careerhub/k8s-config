@@ -63,6 +63,7 @@ apiVersion: gateway.nginx.org/v1alpha1
 kind: SnippetsFilter
 metadata:
   name: json-access-log
+  namespace: nginx-gateway
 spec:
   snippets:
     - context: http
