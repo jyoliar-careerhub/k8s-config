@@ -6,4 +6,4 @@ resources:
 
 patches:
   - path: loadbalancer-patch.yaml
-  # - path: configmap-patch.yaml
+  - path: configmap-patch.yaml
