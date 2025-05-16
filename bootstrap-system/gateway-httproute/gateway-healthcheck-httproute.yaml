@@ -59,6 +59,27 @@ spec:
   selector:
     app: healthcheck
 ---
+apiVersion: gateway.nginx.org/v1alpha1
+kind: SnippetsFilter
+metadata:
+  name: json-access-log
+spec:
+  snippets:
+    - context: http
+      value: |
+        log_format json_format escape=json  '{"proxy_add_x_forwarded_for":"$proxy_add_x_forwarded_for",'
+                                  '"remote_user_ip":"$remote_user",'
+                                  '"time_local":"$time_local",'
+                                  '"request":"$request",'
+                                  '"status":"$status",'
+                                  '"body_bytes_sent":"$body_bytes_sent",'
+                                  '"http_referrer":"$http_referer",'
+                                  '"http_user_agent":"$http_user_agent",'
+                                  '"request_time":"$request_time",'
+                                  '"upstream_response_time":"$upstream_response_time",'
+                                  '"userid":"$cookie__userId"}';
+        access_log stdout json_format;
+---
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
@@ -81,3 +102,8 @@ spec:
             path:
               type: ReplaceFullPath
               replaceFullPath: /
+        - type: ExtensionRef
+          extensionRef:
+            group: gateway.nginx.org
+            kind: SnippetsFilter
+            name: json-access-log
