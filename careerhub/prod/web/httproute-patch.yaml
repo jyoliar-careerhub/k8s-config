@@ -4,4 +4,4 @@ metadata:
   name: careerhub-httproute
 spec:
   hostnames:
-    - prod-careerhub.jyo-liar.com
+    - careerhub.jyo-liar.com
