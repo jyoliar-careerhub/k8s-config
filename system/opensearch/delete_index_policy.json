@@ -1,0 +1,49 @@
+{
+  "_id": "delete_policy",
+  "_version": 3,
+  "_seq_no": 390,
+  "_primary_term": 1,
+  "policy": {
+    "policy_id": "delete_policy",
+    "description": "yy-test-policy",
+    "last_updated_time": 1747398346289,
+    "schema_version": 24,
+    "error_notification": null,
+    "default_state": "hot",
+    "states": [
+      {
+        "name": "hot",
+        "actions": [],
+        "transitions": [
+          {
+            "state_name": "yy-delete",
+            "conditions": {
+              "min_index_age": "1d"
+            }
+          }
+        ]
+      },
+      {
+        "name": "yy-delete",
+        "actions": [
+          {
+            "retry": {
+              "count": 3,
+              "backoff": "exponential",
+              "delay": "1m"
+            },
+            "delete": {}
+          }
+        ],
+        "transitions": []
+      }
+    ],
+    "ism_template": [
+      {
+        "index_patterns": ["*"],
+        "priority": 1,
+        "last_updated_time": 1747398346289
+      }
+    ]
+  }
+}
