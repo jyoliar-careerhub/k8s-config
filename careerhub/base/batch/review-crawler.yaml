@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: review-crawler
 spec:
-  schedule: "12 * * * *"
+  schedule: "09 20 * * *"
   successfulJobsHistoryLimit: 1
   failedJobsHistoryLimit: 3
   jobTemplate:
