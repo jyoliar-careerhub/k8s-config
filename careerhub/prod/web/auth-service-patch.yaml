@@ -7,4 +7,4 @@ spec:
     spec:
       containers:
         - name: auth-service
-          image: "986069063944.dkr.ecr.ap-south-1.amazonaws.com/prod-auth-service-ecr:2025.05.13-05.16.57"
+          image: "986069063944.dkr.ecr.ap-south-1.amazonaws.com/prod-auth-service-ecr:2025.05.17-08.25.06"
