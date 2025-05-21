@@ -53,7 +53,7 @@ spec:
             - static-mode
             - --gateway-ctlr-name=gateway.nginx.org/nginx-gateway-controller-internal
             - --gatewayclass=nginx-internal
-            - --config=nginx-gateway-config
+            - --config=nginx-gateway-config-internal
             - --service=nginx-gateway-internal
             - --metrics-port=9113
             - --health-port=8081
@@ -216,3 +216,16 @@ metadata:
   name: nginx-internal
 spec:
   controllerName: gateway.nginx.org/nginx-gateway-controller-internal
+---
+apiVersion: gateway.nginx.org/v1alpha1
+kind: NginxGateway
+metadata:
+  labels:
+    app.kubernetes.io/instance: nginx-gateway
+    app.kubernetes.io/name: nginx-gateway
+    app.kubernetes.io/version: 1.6.2
+  name: nginx-gateway-config-internal
+  namespace: nginx-gateway
+spec:
+  logging:
+    level: info
