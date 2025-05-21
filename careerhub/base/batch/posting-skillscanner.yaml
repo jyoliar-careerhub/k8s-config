@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: posting-skillscanner
 spec:
-  schedule: "09 06 * * *"
+  schedule: "09 20 * * *"
   successfulJobsHistoryLimit: 1
   failedJobsHistoryLimit: 3
   jobTemplate:
