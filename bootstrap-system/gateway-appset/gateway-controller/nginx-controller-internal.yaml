@@ -184,7 +184,7 @@ spec:
       securityContext:
         fsGroup: 1001
         runAsNonRoot: true
-      serviceAccountname: nginx-gateway
+      serviceAccountName: nginx-gateway
       shareProcessNamespace: true
       terminationGracePeriodSeconds: 30
       volumes:
