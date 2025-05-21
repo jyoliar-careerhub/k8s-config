@@ -7,7 +7,7 @@ spec:
   hostnames:
     - argocd.jyo-liar.com
   parentRefs:
-    - name: nginx-gateway
+    - name: nginx-gateway-internal
       namespace: nginx-gateway
   rules:
     - matches:

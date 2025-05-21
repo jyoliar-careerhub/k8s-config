@@ -6,7 +6,7 @@ spec:
   hostnames:
     - opensearch-dashboard.jyo-liar.com
   parentRefs:
-    - name: nginx-gateway
+    - name: nginx-gateway-internal
       namespace: nginx-gateway
   rules:
     - matches:
