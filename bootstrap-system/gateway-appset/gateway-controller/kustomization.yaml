@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v1.6.2/deploy/default/deploy.yaml
   - clusterrole.yaml
+  - nginx-controller-internal.yaml
 
 patches:
   - path: loadbalancer-patch.yaml
