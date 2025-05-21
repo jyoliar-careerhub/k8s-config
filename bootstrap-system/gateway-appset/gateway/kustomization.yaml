@@ -5,3 +5,5 @@ namespace: nginx-gateway
 resources:
   - gateway.yaml
   - targetgroupbinding.yaml
+  - gateway-internal.yaml
+  - targetgroupbinding-internal.yaml

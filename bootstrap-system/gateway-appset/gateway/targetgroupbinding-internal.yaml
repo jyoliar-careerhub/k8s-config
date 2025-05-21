@@ -1,0 +1,10 @@
+apiVersion: elbv2.k8s.aws/v1beta1
+kind: TargetGroupBinding
+metadata:
+  name: nginx-gateway-internal
+  namespace: nginx-gateway
+spec:
+  serviceRef:
+    name: nginx-gateway-internal # route traffic to the awesome-service
+    port: 80
+  targetGroupName: prod-internal-tg
