@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app.kubernetes.io/instance: nginx-gateway
+    app.kubernetes.io/instance: nginx-gateway-internal
     app.kubernetes.io/name: nginx-gateway-internal
     app.kubernetes.io/version: 1.6.2
   name: nginx-gateway-internal
@@ -20,7 +20,7 @@ spec:
       targetPort: 443
     - name:
   selector:
-    app.kubernetes.io/instance: nginx-gateway
+    app.kubernetes.io/instance: nginx-gateway-internal
     app.kubernetes.io/name: nginx-gateway-internal
   type: NodePort
 ---
@@ -28,7 +28,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app.kubernetes.io/instance: nginx-gateway
+    app.kubernetes.io/instance: nginx-gateway-internal
     app.kubernetes.io/name: nginx-gateway-internal
     app.kubernetes.io/version: 1.6.2
   name: nginx-gateway-internal
@@ -37,7 +37,7 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/instance: nginx-gateway
+      app.kubernetes.io/instance: nginx-gateway-internal
       app.kubernetes.io/name: nginx-gateway-internal
   template:
     metadata:
@@ -45,7 +45,7 @@ spec:
         prometheus.io/port: "9113"
         prometheus.io/scrape: "true"
       labels:
-        app.kubernetes.io/instance: nginx-gateway
+        app.kubernetes.io/instance: nginx-gateway-internal
         app.kubernetes.io/name: nginx-gateway-internal
     spec:
       containers:
@@ -210,7 +210,7 @@ apiVersion: gateway.networking.k8s.io/v1
 kind: GatewayClass
 metadata:
   labels:
-    app.kubernetes.io/instance: nginx-gateway
+    app.kubernetes.io/instance: nginx-gateway-internal
     app.kubernetes.io/name: nginx-gateway-internal
     app.kubernetes.io/version: 1.6.2
   name: nginx-internal
@@ -221,7 +221,7 @@ apiVersion: gateway.nginx.org/v1alpha1
 kind: NginxGateway
 metadata:
   labels:
-    app.kubernetes.io/instance: nginx-gateway
+    app.kubernetes.io/instance: nginx-gateway-internal
     app.kubernetes.io/name: nginx-gateway-internal
     app.kubernetes.io/version: 1.6.2
   name: nginx-gateway-config-internal
