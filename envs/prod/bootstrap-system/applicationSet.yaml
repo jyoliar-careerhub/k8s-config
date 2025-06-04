@@ -18,7 +18,7 @@ spec:
           - name: external-secrets-operator
             path: bootstrap-system/external-secrets-operator
           - name: external-secrets
-            path: bootstrap-system/external-secrets
+            path: envs/prod/bootstrap-system/external-secrets
           - name: gateway-appset
             path: bootstrap-system/gateway-appset
           - name: gateway-httproute
