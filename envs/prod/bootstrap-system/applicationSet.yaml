@@ -16,13 +16,13 @@ spec:
           - name: argocd-appproj
             path: envs/prod/bootstrap-system/argocd-appproj
           - name: external-secrets-operator
-            path: bootstrap-system/external-secrets-operator
+            path: envs/prod/bootstrap-system/external-secrets-operator
           - name: external-secrets
             path: envs/prod/bootstrap-system/external-secrets
           - name: gateway-appset
-            path: bootstrap-system/gateway-appset
+            path: envs/prod/bootstrap-system/gateway-appset
           - name: gateway-httproute
-            path: bootstrap-system/gateway-httproute
+            path: envs/prod/bootstrap-system/gateway-httproute
   strategy:
     type: RollingSync
     rollingSync:
