@@ -12,13 +12,13 @@ spec:
     - list:
         elements:
           - name: prod-careerhub-secret-store
-            path: careerhub/prod/secret-store
+            path: envs/prod/careerhub/secret-store
           - name: prod-careerhub-services
-            path: careerhub/prod/services
+            path: envs/prod/careerhub/services
           - name: prod-careerhub-web
-            path: careerhub/prod/web
+            path: envs/prod/careerhub/web
           - name: prod-careerhub-batch
-            path: careerhub/prod/batch
+            path: envs/prod/careerhub/batch
   strategy:
     type: RollingSync
     rollingSync:
