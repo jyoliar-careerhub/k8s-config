@@ -12,7 +12,7 @@ spec:
     - list:
         elements:
           - name: argocd
-            path: bootstrap-system/argocd
+            path: envs/prod/bootstrap-system/argocd
           - name: argocd-appproj
             path: bootstrap-system/argocd-appproj
           - name: external-secrets-operator
