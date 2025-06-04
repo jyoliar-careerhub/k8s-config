@@ -14,7 +14,7 @@ spec:
           - name: argocd
             path: envs/prod/bootstrap-system/argocd
           - name: argocd-appproj
-            path: bootstrap-system/argocd-appproj
+            path: envs/prod/bootstrap-system/argocd-appproj
           - name: external-secrets-operator
             path: bootstrap-system/external-secrets-operator
           - name: external-secrets
