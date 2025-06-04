@@ -4,6 +4,8 @@ metadata:
   name: prod-careerhub
   namespace: argocd
 spec:
+  syncPolicy:
+    preserveResourcesOnDeletion: true
   goTemplate: true
   goTemplateOptions: ["missingkey=default"]
   generators:
