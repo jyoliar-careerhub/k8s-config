@@ -25,7 +25,7 @@ spec:
             - key: system
               operator: In
               #       values: ["cluster-secret-store", "metrics-server"]
-              values: ["metrics-server"]
+              values: ["prod-metrics-server"]
         # - matchExpressions:
         #     - key: system
         #       operator: In
