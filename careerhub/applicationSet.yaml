@@ -8,11 +8,7 @@ spec:
     preserveResourcesOnDeletion: true
   goTemplate: true
   goTemplateOptions: ["missingkey=default"]
-  generators:
-    - list:
-        elements:
-          - name: prod-careerhub
-            path: careerhub/prod
+  generators: []
   template:
     metadata:
       name: "{{.name}}"
