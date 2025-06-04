@@ -13,8 +13,8 @@ spec:
         elements:
           - name: cluster-secret-store
             path: system/cluster-secret-store
-          - name: metrics-server
-            path: system/metrics-server
+          # - name: metrics-server
+          #   path: system/metrics-server
           - name: log-system
             path: system/log-system
   strategy:
@@ -24,7 +24,8 @@ spec:
         - matchExpressions:
             - key: system
               operator: In
-              values: ["cluster-secret-store", "metrics-server"]
+              # values: ["cluster-secret-store", "metrics-server"]
+              values: ["cluster-secret-store"]
         - matchExpressions:
             - key: system
               operator: In
