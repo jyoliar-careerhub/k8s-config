@@ -1,0 +1,64 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: prod-system
+  namespace: argocd
+spec:
+  syncPolicy:
+    preserveResourcesOnDeletion: true
+  goTemplate: true
+  goTemplateOptions: ["missingkey=default"]
+  generators:
+    - list:
+        elements:
+          # - name: cluster-secret-store
+          #   path: envs/prod/system/cluster-secret-store
+          - name: metrics-server
+            path: envs/prod/system/metrics-server
+          # - name: log-system
+          #   path: envs/prod/system/log-system
+  strategy:
+    type: RollingSync
+    rollingSync:
+      steps:
+        - matchExpressions:
+            - key: system
+              operator: In
+              #       values: ["cluster-secret-store", "metrics-server"]
+              values: ["metrics-server"]
+        # - matchExpressions:
+        #     - key: system
+        #       operator: In
+        #       values: ["log-system"]
+  templatePatch: |
+    {{- with .namespace }}
+    spec:
+      destination:
+        namespace: "{{.}}"
+    {{- end }}
+  template:
+    metadata:
+      name: "{{.name}}"
+      labels:
+        system: "{{.name}}"
+    spec:
+      project: system
+      source:
+        repoURL: git@github.com:jyoliar-careerhub/k8s-config.git
+        targetRevision: main
+        path: "{{.path}}"
+      destination:
+        server: https://kubernetes.default.svc
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        retry:
+          limit: 0 # ← 0이면 무제한 재시도
+          backoff:
+            duration: 5s
+            maxDuration: 3m
+            factor: 2
+        syncOptions:
+          - CreateNamespace=true
+          - FailOnSharedResource=true
