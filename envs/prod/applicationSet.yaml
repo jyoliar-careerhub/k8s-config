@@ -28,7 +28,7 @@ spec:
         - matchExpressions:
             - key: root
               operator: In
-              values: ["system"]
+              values: ["prod-system"]
         # - matchExpressions:
         #     - key: root
         #       operator: In
