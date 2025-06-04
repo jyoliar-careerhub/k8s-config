@@ -13,7 +13,7 @@ spec:
         elements:
           # - name: bootstrap-system
           #   path: bootstrap-system
-          - name: prod-system
+          - name: system
             path: envs/prod/system
           # - name: careerhub
           #   path: careerhub
@@ -28,7 +28,7 @@ spec:
         - matchExpressions:
             - key: root
               operator: In
-              values: ["prod-system"]
+              values: ["system"]
         # - matchExpressions:
         #     - key: root
         #       operator: In

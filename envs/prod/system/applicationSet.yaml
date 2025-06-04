@@ -13,7 +13,7 @@ spec:
         elements:
           # - name: cluster-secret-store
           #   path: envs/prod/system/cluster-secret-store
-          - name: prod-metrics-server
+          - name: metrics-server
             path: envs/prod/system/metrics-server
           # - name: log-system
           #   path: envs/prod/system/log-system
@@ -25,7 +25,7 @@ spec:
             - key: system
               operator: In
               #       values: ["cluster-secret-store", "metrics-server"]
-              values: ["prod-metrics-server"]
+              values: ["metrics-server"]
         # - matchExpressions:
         #     - key: system
         #       operator: In
