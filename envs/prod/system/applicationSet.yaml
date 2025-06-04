@@ -13,7 +13,7 @@ spec:
         elements:
           # - name: cluster-secret-store
           #   path: envs/prod/system/cluster-secret-store
-          - name: metrics-server
+          - name: prod-metrics-server
             path: envs/prod/system/metrics-server
           # - name: log-system
           #   path: envs/prod/system/log-system
