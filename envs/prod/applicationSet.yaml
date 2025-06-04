@@ -12,7 +12,7 @@ spec:
     - list:
         elements:
           - name: bootstrap-system
-            path: bootstrap-system
+            path: envs/prod/bootstrap-system
           - name: system
             path: envs/prod/system
           - name: careerhub
