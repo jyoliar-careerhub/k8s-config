@@ -19,7 +19,7 @@ spec:
             path: envs/prod/system/log-system/opensearch
           - name: fluentbit
             path: system/log-system/fluentbit
-            helmValueFile: envs/prod/system/log-system/fluentbit/values.yaml
+            helmValueFile: /envs/prod/system/log-system/fluentbit/values.yaml
   strategy:
     type: RollingSync
     rollingSync:
