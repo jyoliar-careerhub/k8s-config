@@ -12,13 +12,14 @@ spec:
     - list:
         elements:
           - name: opensearch-volume
-            path: system/log-system/opensearch-volume
+            path: envs/prod/system/log-system/opensearch-volume
           - name: opensearch-secret
-            path: system/log-system/opensearch-secret
+            path: envs/prod/system/log-system/opensearch-secret
           - name: opensearch
-            path: system/log-system/opensearch
+            path: envs/prod/system/log-system/opensearch
           - name: fluentbit
             path: system/log-system/fluentbit
+            helmValueFile: envs/prod/system/log-system/fluentbit/values.yaml
   strategy:
     type: RollingSync
     rollingSync:
@@ -35,6 +36,14 @@ spec:
             - key: system/log-system
               operator: In
               values: ["fluentbit"]
+  templatePatch: |
+    {{- with .helmValueFile }}
+    spec:
+      source: 
+        helm:
+          valueFiles:
+            - "{{.}}"
+    {{- end }}
   template:
     metadata:
       name: "{{.name}}"

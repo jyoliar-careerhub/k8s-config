@@ -16,7 +16,7 @@ spec:
           - name: metrics-server
             path: envs/prod/system/metrics-server
           - name: log-system
-            path: system/log-system
+            path: envs/prod/system/log-system
   strategy:
     type: RollingSync
     rollingSync:
