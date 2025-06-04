@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: prod-root
+  name: root
   namespace: argocd
 spec:
   syncPolicy:
@@ -11,28 +11,28 @@ spec:
   generators:
     - list:
         elements:
-          # - name: bootstrap-system
-          #   path: bootstrap-system
+          - name: bootstrap-system
+            path: bootstrap-system
           - name: system
             path: envs/prod/system
-          # - name: careerhub
-          #   path: careerhub
+          - name: careerhub
+            path: careerhub
   strategy:
     type: RollingSync
     rollingSync:
       steps:
-        # - matchExpressions:
-        #     - key: root
-        #       operator: In
-        #       values: ["bootstrap-system"]
+        - matchExpressions:
+            - key: root
+              operator: In
+              values: ["bootstrap-system"]
         - matchExpressions:
             - key: root
               operator: In
               values: ["system"]
-        # - matchExpressions:
-        #     - key: root
-        #       operator: In
-        #       values: ["careerhub"]
+        - matchExpressions:
+            - key: root
+              operator: In
+              values: ["careerhub"]
   template:
     metadata:
       name: "{{.name}}"

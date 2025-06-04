@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: prod-system
+  name: system
   namespace: argocd
 spec:
   syncPolicy:
@@ -11,12 +11,12 @@ spec:
   generators:
     - list:
         elements:
-          # - name: cluster-secret-store
-          #   path: envs/prod/system/cluster-secret-store
+          - name: cluster-secret-store
+            path: system/cluster-secret-store
           - name: metrics-server
             path: envs/prod/system/metrics-server
-          # - name: log-system
-          #   path: envs/prod/system/log-system
+          - name: log-system
+            path: system/log-system
   strategy:
     type: RollingSync
     rollingSync:
@@ -24,12 +24,12 @@ spec:
         - matchExpressions:
             - key: system
               operator: In
-              #       values: ["cluster-secret-store", "metrics-server"]
-              values: ["metrics-server"]
-        # - matchExpressions:
-        #     - key: system
-        #       operator: In
-        #       values: ["log-system"]
+              values: ["cluster-secret-store", "metrics-server"]
+              # values: ["cluster-secret-store"]
+        - matchExpressions:
+            - key: system
+              operator: In
+              values: ["log-system"]
   templatePatch: |
     {{- with .namespace }}
     spec:
