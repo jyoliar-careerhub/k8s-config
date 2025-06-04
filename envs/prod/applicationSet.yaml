@@ -16,7 +16,7 @@ spec:
           - name: system
             path: envs/prod/system
           - name: careerhub
-            path: careerhub
+            path: envs/prod/careerhub
   strategy:
     type: RollingSync
     rollingSync:
