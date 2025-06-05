@@ -15,6 +15,8 @@ spec:
             path: envs/prod/system/cluster-secret-store
           - name: metrics-server
             path: envs/prod/system/metrics-server
+          - name: storageclass
+            path: envs/prod/system/storageclass
           - name: log-system
             path: envs/prod/system/log-system
   strategy:
@@ -25,7 +27,10 @@ spec:
             - key: system
               operator: In
               values: ["cluster-secret-store", "metrics-server"]
-              # values: ["cluster-secret-store"]
+        - matchExpressions:
+            - key: system
+              operator: In
+              values: ["storageclass"]
         - matchExpressions:
             - key: system
               operator: In
