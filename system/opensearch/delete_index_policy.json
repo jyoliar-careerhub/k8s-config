@@ -1,12 +1,11 @@
 {
-  "_id": "delete_policy",
-  "_version": 3,
-  "_seq_no": 390,
-  "_primary_term": 1,
+  "id": "delete_policy",
+  "seqNo": 66350,
+  "primaryTerm": 1,
   "policy": {
     "policy_id": "delete_policy",
     "description": "yy-test-policy",
-    "last_updated_time": 1747398346289,
+    "last_updated_time": 1747629281397,
     "schema_version": 24,
     "error_notification": null,
     "default_state": "hot",
@@ -18,7 +17,7 @@
           {
             "state_name": "yy-delete",
             "conditions": {
-              "min_index_age": "1d"
+              "min_index_age": "3d"
             }
           }
         ]
