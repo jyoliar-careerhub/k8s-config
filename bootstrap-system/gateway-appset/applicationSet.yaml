@@ -13,10 +13,6 @@ spec:
         elements:
           - name: gateway-crds
             path: bootstrap-system/gateway-appset/gateway-crds
-          - name: cert-manager
-            path: bootstrap-system/gateway-appset/cert-manager
-          - name: aws-loadbalancer-controller
-            path: bootstrap-system/gateway-appset/aws-loadbalancer-controller
           - name: gateway-controller
             path: bootstrap-system/gateway-appset/gateway-controller
           - name: gateway
@@ -28,11 +24,7 @@ spec:
         - matchExpressions:
             - key: bootstrap-system/gateway-appset
               operator: In
-              values: ["gateway-crds", "cert-manager"]
-        - matchExpressions:
-            - key: bootstrap-system/gateway-appset
-              operator: In
-              values: ["aws-loadbalancer-controller"]
+              values: ["gateway-crds"]
         - matchExpressions:
             - key: bootstrap-system/gateway-appset
               operator: In

@@ -1,0 +1,15 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aws-load-balancer-controller
+  namespace: kube-system
+spec:
+  template:
+    spec:
+      containers:
+        - name: controller
+          args:
+            - IT_MUST_BE_REPLACED_WITH_YOUR_VALUES
+            # - --cluster-name=prod-eks
+            # - --aws-vpc-id=vpc-0f644edea8d242424
+            # - --ingress-class=alb
