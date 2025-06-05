@@ -3,3 +3,6 @@ kind: Kustomization
 
 resources:
   - ../../../../bootstrap-system/gateway-httproute
+
+patches:
+  - path: argocd-httproute-patch.yaml
