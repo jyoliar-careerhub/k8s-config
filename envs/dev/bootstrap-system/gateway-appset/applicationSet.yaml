@@ -17,10 +17,10 @@ spec:
             path: bootstrap-system/gateway-appset/cert-manager
           - name: aws-loadbalancer-controller
             path: bootstrap-system/gateway-appset/aws-loadbalancer-controller
-          - name: gateway-controller
-            path: bootstrap-system/gateway-appset/gateway-controller
-          - name: gateway
-            path: bootstrap-system/gateway-appset/gateway
+          # - name: gateway-controller
+          #   path: bootstrap-system/gateway-appset/gateway-controller
+          # - name: gateway
+          #   path: bootstrap-system/gateway-appset/gateway
   strategy:
     type: RollingSync
     rollingSync:
@@ -33,14 +33,14 @@ spec:
             - key: bootstrap-system/gateway-appset
               operator: In
               values: ["aws-loadbalancer-controller"]
-        - matchExpressions:
-            - key: bootstrap-system/gateway-appset
-              operator: In
-              values: ["gateway-controller"]
-        - matchExpressions:
-            - key: bootstrap-system/gateway-appset
-              operator: In
-              values: ["gateway"]
+        # - matchExpressions:
+        #     - key: bootstrap-system/gateway-appset
+        #       operator: In
+        #       values: ["gateway-controller"]
+        # - matchExpressions:
+        #     - key: bootstrap-system/gateway-appset
+        #       operator: In
+        #       values: ["gateway"]
   template:
     metadata:
       name: "{{.name}}"
