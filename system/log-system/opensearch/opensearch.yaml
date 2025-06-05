@@ -41,7 +41,7 @@ spec:
       volumes:
         - name: opensearch-data
           persistentVolumeClaim:
-            claimName: opensearch-pvc
+            claimName: opensearch-ebs-pvc
 ---
 apiVersion: v1
 kind: Service
