@@ -3,3 +3,4 @@ kind: Kustomization
 
 resources:
   - opensearch-volume.yaml
+  - ebs-pvc.yaml
