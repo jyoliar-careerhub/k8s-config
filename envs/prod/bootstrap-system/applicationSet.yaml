@@ -20,9 +20,9 @@ spec:
           - name: external-secrets
             path: envs/prod/bootstrap-system/external-secrets
           - name: cert-manager
-            path: bootstrap-system/cert-manager
+            path: envs/prod/bootstrap-system/cert-manager
           - name: aws-loadbalancer-controller
-            path: bootstrap-system/aws-loadbalancer-controller
+            path: envs/prod/bootstrap-system/aws-loadbalancer-controller
           - name: gateway-appset
             path: envs/prod/bootstrap-system/gateway-appset
           - name: gateway-httproute
