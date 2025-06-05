@@ -1,0 +1,7 @@
+apiVersion: elbv2.k8s.aws/v1beta1
+kind: TargetGroupBinding
+metadata:
+  name: nginx-gateway
+  namespace: nginx-gateway
+spec:
+  targetGroupName: dev-eks-alb-tg

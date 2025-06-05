@@ -1,0 +1,10 @@
+apiVersion: elbv2.k8s.aws/v1beta1
+kind: TargetGroupBinding
+metadata:
+  name: nginx-gateway
+  namespace: nginx-gateway
+spec:
+  serviceRef:
+    name: nginx-gateway # route traffic to the awesome-service
+    port: 80
+  targetGroupName: IT_MUST_BE_REPLACED

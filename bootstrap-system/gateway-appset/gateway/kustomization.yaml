@@ -4,6 +4,6 @@ namespace: nginx-gateway
 
 resources:
   - gateway.yaml
-  - targetgroupbinding.yaml
+  # - targetgroupbinding.yaml
   - gateway-internal.yaml
-  - targetgroupbinding-internal.yaml
+  # - targetgroupbinding-internal.yaml

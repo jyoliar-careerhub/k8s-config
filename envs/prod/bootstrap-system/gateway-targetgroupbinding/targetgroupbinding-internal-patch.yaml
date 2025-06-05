@@ -1,0 +1,7 @@
+apiVersion: elbv2.k8s.aws/v1beta1
+kind: TargetGroupBinding
+metadata:
+  name: nginx-gateway-internal
+  namespace: nginx-gateway
+spec:
+  targetGroupName: prod-internal-tg

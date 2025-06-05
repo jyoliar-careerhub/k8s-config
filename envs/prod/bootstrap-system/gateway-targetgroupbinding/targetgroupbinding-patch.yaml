@@ -4,7 +4,4 @@ metadata:
   name: nginx-gateway
   namespace: nginx-gateway
 spec:
-  serviceRef:
-    name: nginx-gateway # route traffic to the awesome-service
-    port: 80
   targetGroupName: prod-eks-alb-tg

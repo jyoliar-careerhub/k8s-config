@@ -23,6 +23,8 @@ spec:
             path: envs/prod/bootstrap-system/gateway-appset
           - name: gateway-httproute
             path: envs/prod/bootstrap-system/gateway-httproute
+          - name: gateway-targetgroupbinding
+            path: envs/prod/bootstrap-system/gateway-targetgroupbinding
   strategy:
     type: RollingSync
     rollingSync:
@@ -51,6 +53,10 @@ spec:
             - key: bootstrap-system
               operator: In
               values: ["gateway-httproute"]
+        - matchExpressions:
+            - key: bootstrap-system
+              operator: In
+              values: ["gateway-targetgroupbinding"]
   template:
     metadata:
       name: "{{.name}}"
