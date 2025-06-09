@@ -7,4 +7,4 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: "986069063944.dkr.ecr.ap-south-1.amazonaws.com/prod-frontend-ecr:2025.06.09-08.30.33"
+          image: "986069063944.dkr.ecr.ap-south-1.amazonaws.com/prod-frontend-ecr:2025.06.09-10.16.31"
