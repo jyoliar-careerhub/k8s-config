@@ -34,6 +34,16 @@ spec:
       scramCredentialsSecretName: my-scram
   statefulSet:
     spec:
+      volumeClaimTemplates:
+        - metadata:
+            name: data-volume # volumeMounts.name과 동일해야 함
+          spec:
+            accessModes: ["ReadWriteOnce"] # RWO, RWX, ROX 등
+            storageClassName: gp2 # 스토리지 클래스
+            resources:
+              requests:
+                storage: 20Gi # 요청 용량
+            volumeMode: Filesystem # 또는 Block
       template:
         metadata:
           labels:
