@@ -13,6 +13,7 @@ spec:
         elements:
           - name: careerhub-mongodb
             path: envs/dev/careerhub/mongodb
+            namespace: mongodb
   strategy:
     type: RollingSync
     rollingSync:
@@ -21,6 +22,12 @@ spec:
             - key: careerhub
               operator: In
               values: ["careerhub-mongodb"]
+  templatePatch: |
+    {{- with .namespace }}
+    spec:
+      destination:
+        namespace: "{{.}}"
+    {{- end }}
   template:
     metadata:
       name: "{{.name}}"
