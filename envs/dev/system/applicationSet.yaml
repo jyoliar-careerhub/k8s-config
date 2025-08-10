@@ -17,6 +17,8 @@ spec:
             path: envs/dev/system/metrics-server
           # - name: log-system
           #   path: envs/dev/system/log-system
+          - name: mongodb-operator
+            path: envs/dev/system/mongodb-operator
   # strategy:
   #   type: RollingSync
   #   rollingSync:
