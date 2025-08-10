@@ -1,0 +1,36 @@
+apiVersion: mongodbcommunity.mongodb.com/v1
+kind: MongoDBCommunity
+metadata:
+  name: mongodb-replicaset
+spec:
+  members: 3
+  type: ReplicaSet
+  version: "8.0.12"
+  statefulSet:
+    template:
+      metadata:
+        labels:
+          scheduling.mongodb.com/cluster: careerhub
+      spec:
+        tolerations:
+          - key: "app"
+            operator: "Equal"
+            value: "mongodb"
+            effect: "NoSchedule"
+        nodeSelector:
+          app: mongodb
+        affinity:
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+                - matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                        - mongodb
+          podAntiAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              - labelSelector:
+                  matchLabels:
+                    scheduling.mongodb.com/cluster: careerhub
+                topologyKey: kubernetes.io/hostname

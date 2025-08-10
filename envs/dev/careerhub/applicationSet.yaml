@@ -1,51 +1,40 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: root
+  name: careerhub
   namespace: argocd
 spec:
   syncPolicy:
     preserveResourcesOnDeletion: true
   goTemplate: true
-  goTemplateOptions: ["missingkey=error"]
+  goTemplateOptions: ["missingkey=default"]
   generators:
     - list:
         elements:
-          - name: bootstrap-system
-            path: envs/dev/bootstrap-system
-          - name: system
-            path: envs/dev/system
-          - name: careerhub
-            path: envs/dev/careerhub
+          - name: careerhub-mongodb
+            path: envs/dev/careerhub/mongodb
   strategy:
     type: RollingSync
     rollingSync:
       steps:
         - matchExpressions:
-            - key: root
+            - key: careerhub
               operator: In
-              values: ["bootstrap-system"]
-        - matchExpressions:
-            - key: root
-              operator: In
-              values: ["system"]
-        - matchExpressions:
-            - key: root
-              operator: In
-              values: ["careerhub"]
+              values: ["careerhub-mongodb"]
   template:
     metadata:
       name: "{{.name}}"
       labels:
-        root: "{{.name}}"
+        careerhub: "{{.name}}"
     spec:
-      project: root
+      project: careerhub
       source:
         repoURL: git@github.com:jyoliar-careerhub/k8s-config.git
         targetRevision: main
         path: "{{.path}}"
       destination:
         server: https://kubernetes.default.svc
+        namespace: dev-careerhub
       syncPolicy:
         automated:
           prune: true
