@@ -36,19 +36,17 @@ spec:
     spec:
       volumeClaimTemplates:
         - metadata:
-            name: data # volumeMounts.name과 동일해야 함
+            name: data-volume # volumeMounts.name과 동일해야 함
           spec:
             accessModes: ["ReadWriteOnce"] # RWO, RWX, ROX 등
-            storageClassName: gp3 # 스토리지 클래스
             resources:
               requests:
                 storage: 30Gi # 요청 용량
             volumeMode: Filesystem # 또는 Block
         - metadata:
-            name: logs # volumeMounts.name과 동일해야 함
+            name: logs-volume # volumeMounts.name과 동일해야 함
           spec:
             accessModes: ["ReadWriteOnce"] # RWO, RWX, ROX 등
-            storageClassName: gp3 # 스토리지 클래스
             resources:
               requests:
                 storage: 5Gi # 요청 용량

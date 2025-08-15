@@ -9,7 +9,7 @@ spec:
     - ReadWriteOnce
   claimRef: ## claimRef를 통해 PVC를 지정한다.
     namespace: mongodb
-    name: data-careerhub-mongodb-0 #mongodb replicaset의 첫 번째 pod에 대한 PVC
+    name: data-volume-careerhub-mongodb-0 #mongodb replicaset의 첫 번째 pod에 대한 PVC
   persistentVolumeReclaimPolicy: Retain
   csi:
     driver: ebs.csi.aws.com
@@ -27,7 +27,7 @@ spec:
     - ReadWriteOnce
   claimRef: ## claimRef를 통해 PVC를 지정한다.
     namespace: mongodb
-    name: data-careerhub-mongodb-1 #mongodb replicaset의 두 번째 pod에 대한 PVC
+    name: data-volume-careerhub-mongodb-1 #mongodb replicaset의 두 번째 pod에 대한 PVC
   persistentVolumeReclaimPolicy: Retain
   csi:
     driver: ebs.csi.aws.com
@@ -45,7 +45,7 @@ spec:
     - ReadWriteOnce
   claimRef: ## claimRef를 통해 PVC를 지정한다.
     namespace: mongodb
-    name: data-careerhub-mongodb-2 #mongodb replicaset의 세 번째 pod에 대한 PVC
+    name: data-volume-careerhub-mongodb-2 #mongodb replicaset의 세 번째 pod에 대한 PVC
   persistentVolumeReclaimPolicy: Retain
   csi:
     driver: ebs.csi.aws.com
@@ -63,7 +63,7 @@ spec:
     - ReadWriteOnce
   claimRef: ## claimRef를 통해 PVC를 지정한다.
     namespace: mongodb
-    name: logs-careerhub-mongodb-0 #mongodb replicaset의 첫 번째 pod에 대한 PVC
+    name: logs-volume-careerhub-mongodb-0 #mongodb replicaset의 첫 번째 pod에 대한 PVC
   persistentVolumeReclaimPolicy: Retain
   csi:
     driver: ebs.csi.aws.com
@@ -81,7 +81,7 @@ spec:
     - ReadWriteOnce
   claimRef: ## claimRef를 통해 PVC를 지정한다.
     namespace: mongodb
-    name: logs-careerhub-mongodb-1 #mongodb replicaset의 두 번째 pod에 대한 PVC
+    name: logs-volume-careerhub-mongodb-1 #mongodb replicaset의 두 번째 pod에 대한 PVC
   persistentVolumeReclaimPolicy: Retain
   csi:
     driver: ebs.csi.aws.com
@@ -99,7 +99,7 @@ spec:
     - ReadWriteOnce
   claimRef: ## claimRef를 통해 PVC를 지정한다.
     namespace: mongodb
-    name: logs-careerhub-mongodb-2 #mongodb replicaset의 세 번째 pod에 대한 PVC
+    name: logs-volume-careerhub-mongodb-2 #mongodb replicaset의 세 번째 pod에 대한 PVC
   persistentVolumeReclaimPolicy: Retain
   csi:
     driver: ebs.csi.aws.com
