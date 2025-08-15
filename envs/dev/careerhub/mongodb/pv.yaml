@@ -15,6 +15,13 @@ spec:
     driver: ebs.csi.aws.com
     volumeHandle: vol-08b20077916e0dd5e # Terraform에서 만든 EBS ID
     fsType: ext4
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: topology.kubernetes.io/zone
+              operator: In
+              values: ["ap-south-1a"]
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -33,6 +40,13 @@ spec:
     driver: ebs.csi.aws.com
     volumeHandle: vol-05a8c4f3e53e5b3eb # Terraform에서 만든 EBS ID
     fsType: ext4
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: topology.kubernetes.io/zone
+              operator: In
+              values: ["ap-south-1b"]
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -51,6 +65,13 @@ spec:
     driver: ebs.csi.aws.com
     volumeHandle: vol-06e2488a0bab02da2 # Terraform에서 만든 EBS ID
     fsType: ext4
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: topology.kubernetes.io/zone
+              operator: In
+              values: ["ap-south-1c"]
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -69,6 +90,13 @@ spec:
     driver: ebs.csi.aws.com
     volumeHandle: vol-06aedf2d237e2d07d # Terraform에서 만든 EBS ID
     fsType: ext4
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: topology.kubernetes.io/zone
+              operator: In
+              values: ["ap-south-1a"]
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -87,6 +115,13 @@ spec:
     driver: ebs.csi.aws.com
     volumeHandle: vol-03fa91b2542753545 # Terraform에서 만든 EBS ID
     fsType: ext4
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: topology.kubernetes.io/zone
+              operator: In
+              values: ["ap-south-1b"]
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -105,3 +140,10 @@ spec:
     driver: ebs.csi.aws.com
     volumeHandle: vol-06e2488a0bab02da2 # Terraform에서 만든 EBS ID
     fsType: ext4
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: topology.kubernetes.io/zone
+              operator: In
+              values: ["ap-south-1c"]
