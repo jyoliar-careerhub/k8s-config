@@ -63,7 +63,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   csi:
     driver: ebs.csi.aws.com
-    volumeHandle: vol-06e2488a0bab02da2 # Terraform에서 만든 EBS ID
+    volumeHandle: vol-013f99ba1bfffa4a7 # Terraform에서 만든 EBS ID
     fsType: ext4
   nodeAffinity:
     required:
