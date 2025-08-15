@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: careerhub-mongodb-pv-0
+  name: data-careerhub-mongodb-0
 spec:
   capacity:
     storage: 30Gi
@@ -13,13 +13,13 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   csi:
     driver: ebs.csi.aws.com
-    volumeHandle: vol-0abc1234def567890 # Terraform에서 만든 EBS ID
+    volumeHandle: vol-08b20077916e0dd5e # Terraform에서 만든 EBS ID
     fsType: ext4
 ---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: careerhub-mongodb-pv-1
+  name: data-careerhub-mongodb-1
 spec:
   capacity:
     storage: 30Gi
@@ -31,13 +31,13 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   csi:
     driver: ebs.csi.aws.com
-    volumeHandle: vol-0abc1234def567891 # Terraform에서 만든 EBS ID
+    volumeHandle: vol-05a8c4f3e53e5b3eb # Terraform에서 만든 EBS ID
     fsType: ext4
 ---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: careerhub-mongodb-pv-2
+  name: data-careerhub-mongodb-2
 spec:
   capacity:
     storage: 30Gi
@@ -49,5 +49,59 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   csi:
     driver: ebs.csi.aws.com
-    volumeHandle: vol-0abc1234def567892 # Terraform에서 만든 EBS ID
+    volumeHandle: vol-06e2488a0bab02da2 # Terraform에서 만든 EBS ID
+    fsType: ext4
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: logs-careerhub-mongodb-0
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  claimRef: ## claimRef를 통해 PVC를 지정한다.
+    namespace: mongodb
+    name: logs-careerhub-mongodb-0 #mongodb replicaset의 첫 번째 pod에 대한 PVC
+  persistentVolumeReclaimPolicy: Retain
+  csi:
+    driver: ebs.csi.aws.com
+    volumeHandle: vol-06aedf2d237e2d07d # Terraform에서 만든 EBS ID
+    fsType: ext4
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: logs-careerhub-mongodb-1
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  claimRef: ## claimRef를 통해 PVC를 지정한다.
+    namespace: mongodb
+    name: logs-careerhub-mongodb-1 #mongodb replicaset의 두 번째 pod에 대한 PVC
+  persistentVolumeReclaimPolicy: Retain
+  csi:
+    driver: ebs.csi.aws.com
+    volumeHandle: vol-03fa91b2542753545 # Terraform에서 만든 EBS ID
+    fsType: ext4
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: logs-careerhub-mongodb-2
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  claimRef: ## claimRef를 통해 PVC를 지정한다.
+    namespace: mongodb
+    name: logs-careerhub-mongodb-2 #mongodb replicaset의 세 번째 pod에 대한 PVC
+  persistentVolumeReclaimPolicy: Retain
+  csi:
+    driver: ebs.csi.aws.com
+    volumeHandle: vol-06e2488a0bab02da2 # Terraform에서 만든 EBS ID
     fsType: ext4
