@@ -1,7 +1,7 @@
 apiVersion: mongodbcommunity.mongodb.com/v1
 kind: MongoDBCommunity
 metadata:
-  name: mongodb-replicaset
+  name: careerhub-mongodb
 spec:
   members: 3
   type: ReplicaSet
@@ -36,22 +36,22 @@ spec:
     spec:
       volumeClaimTemplates:
         - metadata:
-            name: data-volume # volumeMounts.name과 동일해야 함
+            name: data # volumeMounts.name과 동일해야 함
           spec:
             accessModes: ["ReadWriteOnce"] # RWO, RWX, ROX 등
-            storageClassName: gp2 # 스토리지 클래스
+            storageClassName: gp3 # 스토리지 클래스
             resources:
               requests:
-                storage: 20Gi # 요청 용량
+                storage: 30Gi # 요청 용량
             volumeMode: Filesystem # 또는 Block
         - metadata:
-            name: logs-volume # volumeMounts.name과 동일해야 함
+            name: logs # volumeMounts.name과 동일해야 함
           spec:
             accessModes: ["ReadWriteOnce"] # RWO, RWX, ROX 등
-            storageClassName: gp2 # 스토리지 클래스
+            storageClassName: gp3 # 스토리지 클래스
             resources:
               requests:
-                storage: 20Gi # 요청 용량
+                storage: 5Gi # 요청 용량
             volumeMode: Filesystem # 또는 Block
       template:
         metadata:

@@ -1,0 +1,53 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: careerhub-mongodb-pv-0
+spec:
+  capacity:
+    storage: 30Gi
+  accessModes:
+    - ReadWriteOnce
+  claimRef: ## claimRef를 통해 PVC를 지정한다.
+    namespace: mongodb
+    name: data-careerhub-mongodb-0 #mongodb replicaset의 첫 번째 pod에 대한 PVC
+  persistentVolumeReclaimPolicy: Retain
+  csi:
+    driver: ebs.csi.aws.com
+    volumeHandle: vol-0abc1234def567890 # Terraform에서 만든 EBS ID
+    fsType: ext4
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: careerhub-mongodb-pv-1
+spec:
+  capacity:
+    storage: 30Gi
+  accessModes:
+    - ReadWriteOnce
+  claimRef: ## claimRef를 통해 PVC를 지정한다.
+    namespace: mongodb
+    name: data-careerhub-mongodb-1 #mongodb replicaset의 두 번째 pod에 대한 PVC
+  persistentVolumeReclaimPolicy: Retain
+  csi:
+    driver: ebs.csi.aws.com
+    volumeHandle: vol-0abc1234def567891 # Terraform에서 만든 EBS ID
+    fsType: ext4
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: careerhub-mongodb-pv-2
+spec:
+  capacity:
+    storage: 30Gi
+  accessModes:
+    - ReadWriteOnce
+  claimRef: ## claimRef를 통해 PVC를 지정한다.
+    namespace: mongodb
+    name: data-careerhub-mongodb-2 #mongodb replicaset의 세 번째 pod에 대한 PVC
+  persistentVolumeReclaimPolicy: Retain
+  csi:
+    driver: ebs.csi.aws.com
+    volumeHandle: vol-0abc1234def567892 # Terraform에서 만든 EBS ID
+    fsType: ext4
