@@ -13,7 +13,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   csi:
     driver: ebs.csi.aws.com
-    volumeHandle: vol-08b20077916e0dd5e # Terraform에서 만든 EBS ID
+    volumeHandle: vol-0b42edcaf588510c9 # Terraform에서 만든 EBS ID
     fsType: xfs
   nodeAffinity:
     required:
@@ -38,7 +38,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   csi:
     driver: ebs.csi.aws.com
-    volumeHandle: vol-05a8c4f3e53e5b3eb # Terraform에서 만든 EBS ID
+    volumeHandle: vol-028e71eab5a2a981f # Terraform에서 만든 EBS ID
     fsType: xfs
   nodeAffinity:
     required:
@@ -63,7 +63,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   csi:
     driver: ebs.csi.aws.com
-    volumeHandle: vol-013f99ba1bfffa4a7 # Terraform에서 만든 EBS ID
+    volumeHandle: vol-0fdcd4d7970f0ecbd # Terraform에서 만든 EBS ID
     fsType: xfs
   nodeAffinity:
     required:
@@ -88,7 +88,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   csi:
     driver: ebs.csi.aws.com
-    volumeHandle: vol-06aedf2d237e2d07d # Terraform에서 만든 EBS ID
+    volumeHandle: vol-0a8ec1f29d0bdf394 # Terraform에서 만든 EBS ID
     fsType: xfs
   nodeAffinity:
     required:
@@ -113,7 +113,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   csi:
     driver: ebs.csi.aws.com
-    volumeHandle: vol-03fa91b2542753545 # Terraform에서 만든 EBS ID
+    volumeHandle: vol-0447925771c4b064b # Terraform에서 만든 EBS ID
     fsType: xfs
   nodeAffinity:
     required:
@@ -138,7 +138,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   csi:
     driver: ebs.csi.aws.com
-    volumeHandle: vol-06e2488a0bab02da2 # Terraform에서 만든 EBS ID
+    volumeHandle: vol-0d333b7fea63eaf42 # Terraform에서 만든 EBS ID
     fsType: xfs
   nodeAffinity:
     required:
