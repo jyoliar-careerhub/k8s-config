@@ -1,0 +1,55 @@
+#해당 리소스는 임의로 MongoDB Cluster에 접근하기 위한 SSH Bastion pod와 네트워크 로드밸런서를 생성합니다.
+#네트워크 로드밸런서의 비용을 절감하기 위해 필요시에만 생성하고, 사용 후 삭제합니다.
+#kubectl create secret generic bastion-authorized-keys --from-file=authorized_keys=$HOME/.ssh/id_rsa.pub
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ssh-bastion
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {app: ssh-bastion}
+  template:
+    metadata:
+      labels: {app: ssh-bastion}
+    spec:
+      containers:
+        - name: sshd
+          image: panubo/sshd:latest # SSH 서버 이미지
+          env:
+            - name: SSH_ENABLE_ROOT
+              value: "true"
+            - name: TCP_FORWARDING
+              value: "true"
+          ports:
+            - containerPort: 22 # 컨테이너 내부 포트
+              name: ssh
+          volumeMounts:
+            - name: keys
+              mountPath: /root/.ssh/authorized_keys # SSH 키 파일 경로
+              readOnly: true
+      volumes:
+        - name: keys
+          secret:
+            secretName: bastion-authorized-keys
+            items:
+              - key: authorized_keys
+                path: bastion.pub
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ssh-bastion
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: external
+    service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip
+    service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
+    service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled: "true"
+spec:
+  type: LoadBalancer # 베어메탈이면 MetalLB or NodePort(임시) 사용
+  selector:
+    app: ssh-bastion
+  ports:
+    - name: ssh
+      port: 22 # 외부 노출 포트(Compass가 접속할 포트)
+      targetPort: 22 # 컨테이너 ssh 포트
