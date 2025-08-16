@@ -32,7 +32,7 @@ for path in $init_config_paths; do
 
         IS_APPS=$(kubectl get application -A --no-headers | wc -l)
         if [ "$IS_APPS" -gt 0 ]; then
-            kubectl wait --for=jsonpath='{.status.health.status}'=Healthy --timeout 100s --all app -A > /dev/null
+            kubectl wait --for=jsonpath='{.status.health.status}'=Healthy --timeout 130s --all app -A > /dev/null
         fi
         
         echo "Successfully applied changes in $path."
