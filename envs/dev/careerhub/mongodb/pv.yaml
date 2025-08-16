@@ -14,7 +14,7 @@ spec:
   csi:
     driver: ebs.csi.aws.com
     volumeHandle: vol-08b20077916e0dd5e # Terraform에서 만든 EBS ID
-    fsType: ext4
+    fsType: xfs
   nodeAffinity:
     required:
       nodeSelectorTerms:
@@ -39,7 +39,7 @@ spec:
   csi:
     driver: ebs.csi.aws.com
     volumeHandle: vol-05a8c4f3e53e5b3eb # Terraform에서 만든 EBS ID
-    fsType: ext4
+    fsType: xfs
   nodeAffinity:
     required:
       nodeSelectorTerms:
@@ -64,7 +64,7 @@ spec:
   csi:
     driver: ebs.csi.aws.com
     volumeHandle: vol-013f99ba1bfffa4a7 # Terraform에서 만든 EBS ID
-    fsType: ext4
+    fsType: xfs
   nodeAffinity:
     required:
       nodeSelectorTerms:
@@ -89,7 +89,7 @@ spec:
   csi:
     driver: ebs.csi.aws.com
     volumeHandle: vol-06aedf2d237e2d07d # Terraform에서 만든 EBS ID
-    fsType: ext4
+    fsType: xfs
   nodeAffinity:
     required:
       nodeSelectorTerms:
@@ -114,7 +114,7 @@ spec:
   csi:
     driver: ebs.csi.aws.com
     volumeHandle: vol-03fa91b2542753545 # Terraform에서 만든 EBS ID
-    fsType: ext4
+    fsType: xfs
   nodeAffinity:
     required:
       nodeSelectorTerms:
@@ -139,7 +139,7 @@ spec:
   csi:
     driver: ebs.csi.aws.com
     volumeHandle: vol-06e2488a0bab02da2 # Terraform에서 만든 EBS ID
-    fsType: ext4
+    fsType: xfs
   nodeAffinity:
     required:
       nodeSelectorTerms:
