@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - pv.yaml
   - password.yaml
-  # - replicaset.yaml
+  - replicaset.yaml
