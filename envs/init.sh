@@ -2,11 +2,24 @@
 set -euo pipefail
 
 declare -A kubecontext
+declare -A eksname
 
 kubecontext["dev"]="arn:aws:eks:ap-south-1:986069063944:cluster/dev-eks"
 kubecontext["prod"]="arn:aws:eks:ap-south-1:986069063944:cluster/prod-eks"
+eksname["dev"]="dev-eks"
+eksname["prod"]="prod-eks"
+
+if [ $# -ne 1 ]; then
+    echo "Usage: $0 <environment>"
+    echo "Available environments: ${!kubecontext[@]}"
+    exit 1
+fi
 
 ENV=$1
+REGION="ap-south-1"
+
+aws eks --region $REGION update-kubeconfig --name "${eksname[$ENV]}"
+
 
 init_config_paths="
 argocd/
