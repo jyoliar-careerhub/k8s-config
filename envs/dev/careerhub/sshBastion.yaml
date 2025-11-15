@@ -27,14 +27,16 @@ spec:
           volumeMounts:
             - name: keys
               mountPath: /root/.ssh/authorized_keys # SSH 키 파일 경로
+              subPath: authorized_keys # authorized_keys 파일을 지정
               readOnly: true
+
       volumes:
         - name: keys
           secret:
             secretName: bastion-authorized-keys
             items:
               - key: authorized_keys
-                path: bastion.pub
+                path: authorized_keys
 ---
 apiVersion: v1
 kind: Service
