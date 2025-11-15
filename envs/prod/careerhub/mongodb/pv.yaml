@@ -8,7 +8,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   claimRef: ## claimRef를 통해 PVC를 지정한다.
-    namespace: mongodb
+    namespace: prod-careerhub
     name: data-volume-careerhub-mongodb-0 #mongodb replicaset의 첫 번째 pod에 대한 PVC
   persistentVolumeReclaimPolicy: Retain
   csi:
@@ -33,7 +33,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   claimRef: ## claimRef를 통해 PVC를 지정한다.
-    namespace: mongodb
+    namespace: prod-careerhub
     name: data-volume-careerhub-mongodb-1 #mongodb replicaset의 두 번째 pod에 대한 PVC
   persistentVolumeReclaimPolicy: Retain
   csi:
@@ -58,7 +58,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   claimRef: ## claimRef를 통해 PVC를 지정한다.
-    namespace: mongodb
+    namespace: prod-careerhub
     name: data-volume-careerhub-mongodb-2 #mongodb replicaset의 세 번째 pod에 대한 PVC
   persistentVolumeReclaimPolicy: Retain
   csi:
@@ -83,7 +83,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   claimRef: ## claimRef를 통해 PVC를 지정한다.
-    namespace: mongodb
+    namespace: prod-careerhub
     name: logs-volume-careerhub-mongodb-0 #mongodb replicaset의 첫 번째 pod에 대한 PVC
   persistentVolumeReclaimPolicy: Retain
   csi:
@@ -108,7 +108,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   claimRef: ## claimRef를 통해 PVC를 지정한다.
-    namespace: mongodb
+    namespace: prod-careerhub
     name: logs-volume-careerhub-mongodb-1 #mongodb replicaset의 두 번째 pod에 대한 PVC
   persistentVolumeReclaimPolicy: Retain
   csi:
@@ -133,7 +133,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   claimRef: ## claimRef를 통해 PVC를 지정한다.
-    namespace: mongodb
+    namespace: prod-careerhub
     name: logs-volume-careerhub-mongodb-2 #mongodb replicaset의 세 번째 pod에 대한 PVC
   persistentVolumeReclaimPolicy: Retain
   csi:
