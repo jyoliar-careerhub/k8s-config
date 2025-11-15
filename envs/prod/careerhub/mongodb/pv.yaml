@@ -1,0 +1,149 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: data-careerhub-mongodb-0
+spec:
+  capacity:
+    storage: 30Gi
+  accessModes:
+    - ReadWriteOnce
+  claimRef: ## claimRef를 통해 PVC를 지정한다.
+    namespace: mongodb
+    name: data-volume-careerhub-mongodb-0 #mongodb replicaset의 첫 번째 pod에 대한 PVC
+  persistentVolumeReclaimPolicy: Retain
+  csi:
+    driver: ebs.csi.aws.com
+    volumeHandle: vol-0057d91da0f09a010 # Terraform에서 만든 EBS ID
+    fsType: xfs
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: topology.kubernetes.io/zone
+              operator: In
+              values: ["ap-south-1a"]
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: data-careerhub-mongodb-1
+spec:
+  capacity:
+    storage: 30Gi
+  accessModes:
+    - ReadWriteOnce
+  claimRef: ## claimRef를 통해 PVC를 지정한다.
+    namespace: mongodb
+    name: data-volume-careerhub-mongodb-1 #mongodb replicaset의 두 번째 pod에 대한 PVC
+  persistentVolumeReclaimPolicy: Retain
+  csi:
+    driver: ebs.csi.aws.com
+    volumeHandle: vol-09830807b4e0faa77 # Terraform에서 만든 EBS ID
+    fsType: xfs
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: topology.kubernetes.io/zone
+              operator: In
+              values: ["ap-south-1b"]
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: data-careerhub-mongodb-2
+spec:
+  capacity:
+    storage: 30Gi
+  accessModes:
+    - ReadWriteOnce
+  claimRef: ## claimRef를 통해 PVC를 지정한다.
+    namespace: mongodb
+    name: data-volume-careerhub-mongodb-2 #mongodb replicaset의 세 번째 pod에 대한 PVC
+  persistentVolumeReclaimPolicy: Retain
+  csi:
+    driver: ebs.csi.aws.com
+    volumeHandle: vol-09a9053fa0f1e7abb # Terraform에서 만든 EBS ID
+    fsType: xfs
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: topology.kubernetes.io/zone
+              operator: In
+              values: ["ap-south-1c"]
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: logs-careerhub-mongodb-0
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  claimRef: ## claimRef를 통해 PVC를 지정한다.
+    namespace: mongodb
+    name: logs-volume-careerhub-mongodb-0 #mongodb replicaset의 첫 번째 pod에 대한 PVC
+  persistentVolumeReclaimPolicy: Retain
+  csi:
+    driver: ebs.csi.aws.com
+    volumeHandle: vol-0760db3f19b6f9f1e # Terraform에서 만든 EBS ID
+    fsType: xfs
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: topology.kubernetes.io/zone
+              operator: In
+              values: ["ap-south-1a"]
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: logs-careerhub-mongodb-1
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  claimRef: ## claimRef를 통해 PVC를 지정한다.
+    namespace: mongodb
+    name: logs-volume-careerhub-mongodb-1 #mongodb replicaset의 두 번째 pod에 대한 PVC
+  persistentVolumeReclaimPolicy: Retain
+  csi:
+    driver: ebs.csi.aws.com
+    volumeHandle: vol-05e8571482610e011 # Terraform에서 만든 EBS ID
+    fsType: xfs
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: topology.kubernetes.io/zone
+              operator: In
+              values: ["ap-south-1b"]
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: logs-careerhub-mongodb-2
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  claimRef: ## claimRef를 통해 PVC를 지정한다.
+    namespace: mongodb
+    name: logs-volume-careerhub-mongodb-2 #mongodb replicaset의 세 번째 pod에 대한 PVC
+  persistentVolumeReclaimPolicy: Retain
+  csi:
+    driver: ebs.csi.aws.com
+    volumeHandle: vol-0b6d49f071a089f41 # Terraform에서 만든 EBS ID
+    fsType: xfs
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: topology.kubernetes.io/zone
+              operator: In
+              values: ["ap-south-1c"]

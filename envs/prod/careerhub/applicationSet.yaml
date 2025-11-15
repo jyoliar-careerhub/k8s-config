@@ -13,12 +13,14 @@ spec:
         elements:
           - name: prod-careerhub-secret-store
             path: envs/prod/careerhub/secret-store
-          - name: prod-careerhub-services
-            path: envs/prod/careerhub/services
-          - name: prod-careerhub-web
-            path: envs/prod/careerhub/web
-          - name: prod-careerhub-batch
-            path: envs/prod/careerhub/batch
+          - name: prod-careerhub-mongodb
+            path: envs/prod/careerhub/mongodb
+          # - name: prod-careerhub-services
+          #   path: envs/prod/careerhub/services
+          # - name: prod-careerhub-web
+          #   path: envs/prod/careerhub/web
+          # - name: prod-careerhub-batch
+          #   path: envs/prod/careerhub/batch
   strategy:
     type: RollingSync
     rollingSync:
@@ -27,6 +29,10 @@ spec:
             - key: careerhub/prod
               operator: In
               values: ["prod-careerhub-secret-store"]
+        - matchExpressions:
+            - key: careerhub/prod
+              operator: In
+              values: ["prod-careerhub-mongodb"]
         - matchExpressions:
             - key: careerhub/prod
               operator: In

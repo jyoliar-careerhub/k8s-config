@@ -3,5 +3,6 @@ kind: Kustomization
 
 resources:
   - ../../../../careerhub/secret-store
+  - mongodb-admin-secret.yaml
 patches:
   - path: secret-store-patch.yaml
