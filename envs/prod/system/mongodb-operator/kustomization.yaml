@@ -5,3 +5,6 @@ resources:
   - namespace.yaml
   - https://raw.githubusercontent.com/mongodb/mongodb-kubernetes/1.6.0/public/mongodb-kubernetes.yaml
   - https://raw.githubusercontent.com/mongodb/mongodb-kubernetes/1.6.0/public/crds.yaml
+
+patches:
+  - path: mongodb-operator-patch.yaml
