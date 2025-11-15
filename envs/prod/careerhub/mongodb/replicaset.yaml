@@ -61,9 +61,3 @@ spec:
                         operator: In
                         values:
                           - mongodb
-            podAntiAffinity:
-              requiredDuringSchedulingIgnoredDuringExecution:
-                - labelSelector:
-                    matchLabels:
-                      scheduling.mongodb.com/cluster: careerhub
-                  topologyKey: kubernetes.io/hostname
