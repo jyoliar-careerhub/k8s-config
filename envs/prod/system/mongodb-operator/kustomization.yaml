@@ -5,6 +5,7 @@ resources:
   - namespace.yaml
   - https://raw.githubusercontent.com/mongodb/mongodb-kubernetes/1.6.0/public/mongodb-kubernetes.yaml
   - https://raw.githubusercontent.com/mongodb/mongodb-kubernetes/1.6.0/public/crds.yaml
+  - mongodb-operator-cluster-role.yaml
 
 patches:
   - path: mongodb-operator-patch.yaml
