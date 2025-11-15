@@ -23,6 +23,7 @@ metadata:
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
+  name: mongodb-kubernetes-appdb
 subjects:
   - kind: ServiceAccount
     name: mongodb-kubernetes-appdb
