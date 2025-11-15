@@ -9,12 +9,17 @@ rules:
       - secrets
     verbs:
       - get
+      - list
+      - watch
   - apiGroups:
       - ""
     resources:
       - pods
     verbs:
       - patch
+      - get
+      - list
+      - watch
 ---
 kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
